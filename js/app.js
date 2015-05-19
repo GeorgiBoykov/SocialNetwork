@@ -10,6 +10,10 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/authentication.html',
             controller: 'AuthenticationController'
         })
+        .when('/news-feed', {
+            templateUrl: 'partials/news-feed.html',
+            controller: 'NewsFeedController'
+        })
         .otherwise({
             redirectTo: '/'
         })

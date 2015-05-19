@@ -24,14 +24,6 @@ app.factory('credentialsService', function () {
         sessionStorage.setItem('fullName', name);
     }
 
-    function getUserId() {
-        return sessionStorage.getItem('userId');
-    }
-
-    function setUserId(userId) {
-        sessionStorage.setItem('userId', userId);
-    }
-
     function clearCredentials() {
         delete sessionStorage.username;
         delete sessionStorage.sessionToken;
@@ -46,8 +38,6 @@ app.factory('credentialsService', function () {
         setUsername: setUsername,
         getName: getName,
         setName: setName,
-        getUserId: getUserId,
-        setUserId: setUserId,
         clearCredentials: clearCredentials
     }
 });
