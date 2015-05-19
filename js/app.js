@@ -8,11 +8,11 @@ app.config(['$routeProvider', function (routeProvider) {
     routeProvider
         .when('/', {
             templateUrl: 'partials/authentication.html',
-            controller: 'AuthenticationController'
+            controller: 'UserController'
         })
         .when('/news-feed', {
             templateUrl: 'partials/news-feed.html',
-            controller: 'NewsFeedController'
+            controller: 'ProfileController'
         })
         .otherwise({
             redirectTo: '/'

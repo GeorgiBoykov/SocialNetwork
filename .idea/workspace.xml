@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2367f8c4-f7ac-40b3-a4bb-59a24e35a01e" name="Default" comment="Notifcations added">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/services/notificationService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/AuthenticationController.js" afterPath="$PROJECT_DIR$/js/controllers/AuthenticationController.js" />
+    <list default="true" id="2367f8c4-f7ac-40b3-a4bb-59a24e35a01e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/services/commentService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/services/postService.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/services/profileService.js" />
+      <change type="MOVED" beforePath="C:\Users\Georgi\Documents\GitHub\SocialNetwork\js\controllers\AuthenticationController.js" afterPath="$PROJECT_DIR$/js/controllers/UserController.js" />
+      <change type="MOVED" beforePath="C:\Users\Georgi\Documents\GitHub\SocialNetwork\js\controllers\NewsFeedController.js" afterPath="$PROJECT_DIR$/js/controllers/ProfileController.js" />
+      <change type="MOVED" beforePath="C:\Users\Georgi\Documents\GitHub\SocialNetwork\js\services\authenticationService.js" afterPath="$PROJECT_DIR$/js/services/userService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/NavBarController.js" afterPath="$PROJECT_DIR$/js/controllers/NavBarController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/services/credentialsService.js" afterPath="$PROJECT_DIR$/js/services/credentialsService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/nav-bar.html" afterPath="$PROJECT_DIR$/partials/nav-bar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/partials/news-feed.html" afterPath="$PROJECT_DIR$/partials/news-feed.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SocialNetwork.iws" />
@@ -32,81 +33,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/app.js">
+      <file leaf-file-name="ProfileController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/ProfileController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news-feed.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="news-feed.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/news-feed.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.2725724">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthenticationController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
+      <file leaf-file-name="profileService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/services/profileService.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.37931">
-              <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="credentialsService.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/services/credentialsService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nav-bar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/nav-bar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6896552">
-              <caret line="14" column="57" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NavBarController.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/controllers/NavBarController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19480519">
-              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsFeedController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/controllers/NewsFeedController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -145,12 +96,20 @@
         <option value="$PROJECT_DIR$/partials/nav-bar.html" />
         <option value="$PROJECT_DIR$/js/services/credentialsService.js" />
         <option value="$PROJECT_DIR$/js/services/notificationService.js" />
-        <option value="$PROJECT_DIR$/js/app.js" />
-        <option value="$PROJECT_DIR$/partials/news-feed.html" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/controllers/NavBarController.js" />
+        <option value="$PROJECT_DIR$/js/services/postsService.js" />
+        <option value="$PROJECT_DIR$/js/services/usersService.js" />
         <option value="$PROJECT_DIR$/js/controllers/AuthenticationController.js" />
+        <option value="$PROJECT_DIR$/js/controllers/UserController.js" />
+        <option value="$PROJECT_DIR$/js/controllers/NavBarController.js" />
         <option value="$PROJECT_DIR$/js/controllers/NewsFeedController.js" />
+        <option value="$PROJECT_DIR$/js/services/postService.js" />
+        <option value="$PROJECT_DIR$/js/services/commentService.js" />
+        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/js/services/userService.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/services/profileService.js" />
+        <option value="$PROJECT_DIR$/js/controllers/ProfileController.js" />
+        <option value="$PROJECT_DIR$/partials/news-feed.html" />
       </list>
     </option>
   </component>
@@ -376,6 +335,13 @@
       <option name="number" value="Default" />
       <updated>1431891750765</updated>
     </task>
+    <task id="LOCAL-00001" summary="Notifcations added">
+      <created>1432059140955</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1432059140955</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -437,17 +403,11 @@
           <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
           <folding>
             <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
@@ -455,7 +415,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/authenticationService.js">
+    <entry file="file://$PROJECT_DIR$/js/services/userService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="61" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
@@ -503,7 +463,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/NewsFeedController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/ProfileController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
@@ -525,17 +485,11 @@
           <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
           <folding>
             <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -543,7 +497,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/authenticationService.js">
+    <entry file="file://$PROJECT_DIR$/js/services/userService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="61" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
@@ -591,7 +545,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
@@ -604,12 +558,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
             <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
@@ -661,7 +609,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
@@ -674,12 +622,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
             <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
@@ -737,74 +679,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/authentication.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
-          <folding>
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/services/authenticationService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="61" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/services/notificationService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/news-feed.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.37931">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/nav-bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6896552">
-          <caret line="14" column="57" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/AuthenticationController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -817,18 +695,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/NewsFeedController.js">
+    <entry file="file://$PROJECT_DIR$/partials/nav-bar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4770017">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/postService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/commentService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/NavBarController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19480519">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="5" selection-start-line="12" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8177172">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/authentication.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-60.0">
+          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
+          <folding>
+            <marker date="1431978512893" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/UserController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/userService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="71" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services/profileService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/ProfileController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partials/news-feed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2725724">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>

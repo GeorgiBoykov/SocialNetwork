@@ -1,5 +1,7 @@
 app.controller('NavBarController', function (
-    $scope, $rootScope, authenticationService, credentialsService, notificationService) {
+    $scope, $rootScope, userService, credentialsService, notificationService) {
+
+    $scope.username = credentialsService.getUsername();
 
     if (sessionStorage['sessionToken']) {
         $rootScope.logged = true;
@@ -7,10 +9,9 @@ app.controller('NavBarController', function (
         $rootScope.logged = false;
     }
 
-    $scope.username = credentialsService.getUsername();
 
     $scope.logout = function () {
-        authenticationService.Logout({Authorization: credentialsService.getSessionToken()},
+        userService.Logout({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 console.log(serverData);
                 notificationService.showInfoMessage('Logout Successful.')

@@ -1,8 +1,8 @@
-app.controller('AuthenticationController', function (
-    $scope, $rootScope, $location, authenticationService, credentialsService, notificationService) {
+app.controller('UserController', function (
+    $scope, $rootScope, $location, userService, credentialsService, notificationService) {
 
     $scope.register = function (registerData) {
-        authenticationService.Register(registerData,
+        userService.Register(registerData,
             function(serverData) {
                 console.log(serverData);
                 notificationService.showInfoMessage('Registration Successful.')
@@ -16,7 +16,7 @@ app.controller('AuthenticationController', function (
     };
 
     $scope.login = function (loginData) {
-        authenticationService.Login(loginData,
+        userService.Login(loginData,
             function(serverData) {
                 console.log(serverData);
                 notificationService.showInfoMessage('Login Successful.')
