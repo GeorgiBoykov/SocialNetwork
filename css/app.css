@@ -2,3 +2,10 @@
     width: 80%;
     margin: 0 auto;
 }
+
+#news-feed-header{
+    border: 3px solid #426C98;
+    border-radius: 5px;
+    padding: 2%;
+    margin-bottom: 3%;
+}
