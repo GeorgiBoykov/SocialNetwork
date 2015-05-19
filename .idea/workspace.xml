@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2367f8c4-f7ac-40b3-a4bb-59a24e35a01e" name="Default" comment="">
+    <list default="true" id="2367f8c4-f7ac-40b3-a4bb-59a24e35a01e" name="Default" comment="Posts fixes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SocialNetwork.iws" />
@@ -76,8 +76,8 @@
       <file leaf-file-name="nav-bar.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/partials/nav-bar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7955707">
-              <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.98807496">
+              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -373,7 +373,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432068031085</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="posts fixes">
+      <created>1432068072965</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432068072965</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -822,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/partials/nav-bar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7955707">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.98807496">
+          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
           <folding />
         </state>
       </provider>
