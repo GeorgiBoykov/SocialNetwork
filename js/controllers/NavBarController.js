@@ -1,5 +1,5 @@
 app.controller('NavBarController', function (
-    $scope, $rootScope, userService, credentialsService, notificationService) {
+    $scope, $rootScope, $location, userService, credentialsService, notificationService) {
 
     $scope.username = credentialsService.getUsername();
 
@@ -14,9 +14,11 @@ app.controller('NavBarController', function (
         userService.Logout({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 console.log(serverData);
-                notificationService.showInfoMessage('Logout Successful.')
+                notificationService.showInfoMessage('Logout Successful.');
                 $rootScope.logged = false;
                 credentialsService.clearCredentials();
+                $location.path('/');
+
             },
             function (serverError) {
                 console.log(serverError);

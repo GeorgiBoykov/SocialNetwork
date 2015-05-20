@@ -1,7 +1,7 @@
 app.controller('ProfileController', function ($scope, credentialsService, profileService) {
 
-    loadNewsFeed();
-    function loadNewsFeed() {
+    loadNewsFeedPage();
+    function loadNewsFeedPage() {
         profileService.getNewsFeed({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 console.log(serverData);

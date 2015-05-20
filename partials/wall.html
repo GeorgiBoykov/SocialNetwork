@@ -1,0 +1,12 @@
+<h1 id="news-feed-header">{{username}}`s Wall</h1>
+<div class="news-feed">
+    <blockquote ng-repeat="post in posts">
+        <small>{{post.author.username}}</small>
+        <p>{{post.postContent}}</p>
+        <small>{{post.date}}</small>
+        <div class="post-attributes">
+            <span>({{post.likesCount}})</span> <a href="#">Like</a>
+            <span>({{post.comments.length}})</span> <a href="#">Comment</a>
+        </div>
+    </blockquote>
+</div>

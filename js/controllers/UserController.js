@@ -1,13 +1,13 @@
 app.controller('UserController', function (
-    $scope, $rootScope, $location, userService, credentialsService, notificationService) {
+    $scope, $rootScope, $location, userService, credentialsService, notificationService, $routeParams) {
 
     $scope.register = function (registerData) {
         userService.Register(registerData,
             function(serverData) {
                 console.log(serverData);
-                notificationService.showInfoMessage('Registration Successful.')
-                credentialsService.setSessionToken(serverData['access_token'])
-                credentialsService.setUsername(serverData['userName'])
+                notificationService.showInfoMessage('Registration Successful.');
+                credentialsService.setSessionToken(serverData['access_token']);
+                credentialsService.setUsername(serverData['userName']);
                 $location.path('/news-feed');
             },
             function (serverError) {
@@ -19,7 +19,7 @@ app.controller('UserController', function (
         userService.Login(loginData,
             function(serverData) {
                 console.log(serverData);
-                notificationService.showInfoMessage('Login Successful.')
+                notificationService.showInfoMessage('Login Successful.');
                 $rootScope.logged = true;
                 credentialsService.setSessionToken(serverData['access_token']);
                 credentialsService.setUsername(serverData['userName']);
@@ -29,4 +29,19 @@ app.controller('UserController', function (
                 console.log(serverError);
             });
     };
+
+    if ($routeParams.username) {
+        loadWallPage($routeParams.username);
+    }
+    function loadWallPage(username) {
+        userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                console.log(serverData);
+                $scope.posts = serverData;
+                $scope.username = username;
+            },
+            function (serverError) {
+                console.log(serverError);
+            });
+    }
 });

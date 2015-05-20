@@ -8,7 +8,8 @@ app.factory('profileService', function ($http, baseUrl) {
             }).error(error);
     }
 
+
     return {
-        getNewsFeed: getNewsFeed
+        getNewsFeed : getNewsFeed
     }
 });

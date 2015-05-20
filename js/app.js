@@ -14,6 +14,10 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/news-feed.html',
             controller: 'ProfileController'
         })
+        .when('/users/:username', {
+            templateUrl: 'partials/wall.html',
+            controller: 'UserController'
+        })
         .otherwise({
             redirectTo: '/'
         })
