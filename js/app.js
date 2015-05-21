@@ -18,6 +18,14 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/wall.html',
             controller: 'UserController'
         })
+        .when('/users/:username/friends', {
+            templateUrl: 'partials/friends-list.html',
+            controller: 'ProfileController'
+        })
+        .when('/profile-settings', {
+            templateUrl: 'partials/profile-settings.html',
+            controller: 'ProfileController'
+        })
         .otherwise({
             redirectTo: '/'
         })
