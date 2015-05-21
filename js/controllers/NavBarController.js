@@ -1,7 +1,7 @@
 app.controller('NavBarController', function (
     $scope, $rootScope, $location, userService, credentialsService, notificationService) {
 
-    $scope.username = credentialsService.getUsername();
+    $scope.credentialsService = credentialsService;
 
     if (sessionStorage['sessionToken']) {
         $rootScope.logged = true;

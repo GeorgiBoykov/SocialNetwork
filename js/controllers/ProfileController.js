@@ -11,4 +11,5 @@ app.controller('ProfileController', function ($scope, credentialsService, profil
                 console.log(serverError);
             });
     }
+ 
 });

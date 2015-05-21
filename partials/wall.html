@@ -1,5 +1,9 @@
-<h1 id="news-feed-header">{{username}}`s Wall</h1>
-<div class="news-feed">
+<h1>{{username}}`s Wall</h1>
+
+<div class="posts" ng-controller="PostController">
+	<textarea placeholder="Write new post..." ng-model="newPost"></textarea>
+	<button ng-click="addNewPost(newPost)">Submit</button>
+    
     <blockquote ng-repeat="post in posts">
         <small>{{post.author.username}}</small>
         <p>{{post.postContent}}</p>
