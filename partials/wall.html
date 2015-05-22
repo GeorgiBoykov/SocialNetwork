@@ -1,6 +1,8 @@
-<h1>{{username}}`s Wall</h1>
-
-<div class="posts" ng-controller="PostController">
+<div class="posts" ng-controller="WallController">
+    <div class="wall-owner" style="background-image:url({{userData.coverImageData}})">
+        <img class="wall-profile-image" src="{{userData.profileImageData}}" alt=""/>
+        <div>{{userData.name}}</div>
+    </div>
     <div class="add-post" ng-if="isCurrentUser">
         <textarea class="form-control" placeholder="Write new post..." ng-model="newPost"></textarea>
         <button id="add-post-button" class="btn btn-primary" ng-click="addNewPost(newPost)">Post</button>

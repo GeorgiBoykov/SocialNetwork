@@ -32,6 +32,7 @@ app.controller('UserController', function (
 
     if ($routeParams.username) {
         loadWallPage($routeParams.username);
+        loadUserData($routeParams.username);
     }
     function loadWallPage(username) {
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
@@ -45,4 +46,15 @@ app.controller('UserController', function (
                 console.log(serverError);
             });
     }
+
+    function loadUserData(username) {
+        userService.getUserProfile(username, {Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.userData = serverData;
+            },
+            function (serverError) {
+                console.log(serverError);
+            });
+    }
+
 });

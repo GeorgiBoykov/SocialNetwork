@@ -1,7 +1,7 @@
 app.controller('NavBarController', function (
     $scope, $rootScope, $location, userService, credentialsService, profileService,notificationService) {
 
-    $scope.credentialsService = credentialsService;
+    $rootScope.credentialsService = credentialsService;
 
     if (credentialsService.isLogged()) {
         credentialsService.refreshProfileData();

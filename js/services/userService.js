@@ -20,6 +20,13 @@ app.factory('userService', function ($http, baseUrl) {
             }).error(error);
     }
 
+    function getUserProfile(username, headers, success, error) {
+        $http.get(serviceUrl + '/' + username, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     function getUserWall(username, headers, success, error) {
         return $http.get(serviceUrl + '/'+username+'/wall?StartPostId=&PageSize=5', {headers: headers})
             .success(function (data, status, headers, config) {
@@ -30,6 +37,7 @@ app.factory('userService', function ($http, baseUrl) {
         Register : Register,
         Login : Login,
         Logout : Logout,
+        getUserProfile: getUserProfile,
         getUserWall : getUserWall
     }
 });
