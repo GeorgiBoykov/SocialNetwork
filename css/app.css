@@ -9,3 +9,17 @@
     padding: 2%;
     margin-bottom: 3%;
 }
+
+.post-author-img{
+    width: 64px;
+    height: 64px;
+}
+
+.add-post{
+    width: 50%;
+    margin-bottom: 3%;
+}
+
+#add-post-button{
+    margin-top: 3%;
+}

@@ -4,7 +4,7 @@ app.controller('PostController', function ($scope, postService, credentialsServi
         postService.addNewPost({postContent: content, username: credentialsService.getUsername()},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 console.log(serverData);
-                $scope.posts = serverData;
+                //$scope.posts = serverData;
             },
             function (serverError) {
                 console.log(serverError);

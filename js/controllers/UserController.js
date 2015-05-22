@@ -39,6 +39,7 @@ app.controller('UserController', function (
                 console.log(serverData);
                 $scope.posts = serverData;
                 $scope.username = username;
+                $scope.isCurrentUser = credentialsService.getUsername() === username;
             },
             function (serverError) {
                 console.log(serverError);

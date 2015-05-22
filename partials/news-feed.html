@@ -2,7 +2,7 @@
 <div class="news-feed">
     <blockquote ng-repeat="post in posts">
         <a href="#/users/{{post.author.username}}">
-            <img src="{{post.author.profileImageData}}" alt=""/>
+            <img src="{{post.author.profileImageData}}" class="post-author-img" alt=""/>
         </a>
         <small>{{post.author.username}}</small>
         <p>{{post.postContent}}</p>
