@@ -1,29 +1,16 @@
 app.controller('NavBarController', function (
-    $scope, $rootScope, $location, userService, credentialsService, profileService, notificationService) {
+    $scope, $rootScope, $location, userService, credentialsService, profileService,notificationService) {
 
-    if (sessionStorage['sessionToken']) {
-        $rootScope.logged = true;
-    } else {
-        $rootScope.logged = false;
-    }
+    $scope.credentialsService = credentialsService;
 
-    getProfileData();
-    function getProfileData() {
-        profileService.getProfile({Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                console.log(serverData);
-                $scope.profile = serverData;
-            },
-            function (serverError) {
-                console.log(serverError);
-            });
+    if (credentialsService.isLogged()) {
+        credentialsService.refreshProfileData();
     }
 
     $scope.logout = function () {
         userService.Logout({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 notificationService.showInfoMessage('Logout Successful.');
-                $rootScope.logged = false;
                 credentialsService.clearCredentials();
                 $location.path('/');
 
@@ -32,4 +19,5 @@ app.controller('NavBarController', function (
                 console.log(serverError);
             });
     }
+
 });

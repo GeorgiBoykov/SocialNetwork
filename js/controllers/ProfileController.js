@@ -1,5 +1,6 @@
 app.controller('ProfileController',
     function ($scope, $location, $routeParams, credentialsService, profileService) {
+
         if ($location.path() === '/news-feed') {
             loadNewsFeedPage();
         }
@@ -28,11 +29,11 @@ app.controller('ProfileController',
                 });
         }
 
-
         $scope.editProfile = function (data) {
             profileService.editProfile(data, {Authorization: credentialsService.getSessionToken()},
                 function(serverData) {
                     console.log(serverData);
+                    credentialsService.refreshProfileData();
                 },
                 function (serverError) {
                     console.log(serverError);

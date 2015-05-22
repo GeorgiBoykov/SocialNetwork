@@ -1,4 +1,4 @@
-app.factory('credentialsService', function () {
+app.factory('credentialsService', function ($rootScope, $http, baseUrl, anonymousImage) {
 
     function getSessionToken() {
         return sessionStorage.getItem('sessionToken');
@@ -21,14 +21,60 @@ app.factory('credentialsService', function () {
     }
 
     function setName(name) {
-        sessionStorage.setItem('fullName', name);
+        sessionStorage.setItem('name', name);
+    }
+
+    function getEmail() {
+        return sessionStorage.getItem('email');
+    }
+
+    function setEmail(email) {
+        sessionStorage.setItem('email', email);
+    }
+
+    function getProfileImage() {
+        if (sessionStorage.getItem('profileImage')) {
+            if (sessionStorage.getItem('profileImage').length > 30) {
+                return sessionStorage.getItem('profileImage')
+            }
+        }
+
+        return anonymousImage;
+    }
+
+    function setProfileImage(profileImage) {
+        sessionStorage.setItem('profileImage', profileImage);
+    }
+
+    function getCoverImage() {
+        return sessionStorage.getItem('coverImage');
+    }
+
+    function setCoverImage(coverImage) {
+        sessionStorage.setItem('coverImage', coverImage);
+    }
+
+    function refreshProfileData() {
+        $http.get(baseUrl + 'me', {headers: {Authorization: getSessionToken()}})
+            .success(function(serverData) {
+                setName(serverData.name);
+                setEmail(serverData.email);
+                setProfileImage(serverData.profileImageData);
+                setCoverImage(serverData.coverImageData);
+            }).error(function (serverError) {
+                console.log(serverError);
+            })
+    }
+
+    function isLogged () {
+        if (sessionStorage['sessionToken']) {
+          return true
+        }
+        return false ;
     }
 
     function clearCredentials() {
-        delete sessionStorage.username;
-        delete sessionStorage.sessionToken;
-        delete sessionStorage.userId;
-        delete sessionStorage.name;
+        sessionStorage.clear();
     }
 
     return {
@@ -38,6 +84,14 @@ app.factory('credentialsService', function () {
         setUsername: setUsername,
         getName: getName,
         setName: setName,
+        getEmail: getEmail,
+        setEmail: setEmail,
+        getProfileImage : getProfileImage,
+        setProfileImage: setProfileImage,
+        getCoverImage: getCoverImage,
+        setCoverImage: setCoverImage,
+        refreshProfileData: refreshProfileData,
+        isLogged : isLogged,
         clearCredentials: clearCredentials
     }
 });

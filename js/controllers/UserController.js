@@ -1,6 +1,5 @@
 app.controller('UserController', function (
-    $scope, $rootScope, $location, userService, credentialsService, notificationService, $routeParams) {
-
+    $scope, $rootScope, $location ,userService, credentialsService, notificationService, $routeParams) {
     $scope.register = function (registerData) {
         userService.Register(registerData,
             function(serverData) {
@@ -8,6 +7,7 @@ app.controller('UserController', function (
                 notificationService.showInfoMessage('Registration Successful.');
                 credentialsService.setSessionToken(serverData['access_token']);
                 credentialsService.setUsername(serverData['userName']);
+                credentialsService.refreshProfileData();
                 $location.path('/news-feed');
             },
             function (serverError) {
@@ -20,9 +20,9 @@ app.controller('UserController', function (
             function(serverData) {
                 console.log(serverData);
                 notificationService.showInfoMessage('Login Successful.');
-                $rootScope.logged = true;
                 credentialsService.setSessionToken(serverData['access_token']);
                 credentialsService.setUsername(serverData['userName']);
+                credentialsService.refreshProfileData();
                 $location.path('/news-feed');
             },
             function (serverError) {

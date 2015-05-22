@@ -1,7 +1,9 @@
 <h1>Friends</h1>
 <div class="friends">
     <div ng-repeat="friend in friends">
-        <img src="{{friend.profileImageData}}" alt="image"/>
-        <span>{{friend.name}}</span>
+        <a href="#/users/{{friend.username}}">
+            <img src="{{friend.profileImageData}}" alt="image"/>
+            <div>{{friend.name}}</div>
+        </a>
     </div>
 </div>

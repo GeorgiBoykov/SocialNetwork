@@ -1,6 +1,9 @@
 <h1 id="news-feed-header">News Feed</h1>
 <div class="news-feed">
     <blockquote ng-repeat="post in posts">
+        <a href="#/users/{{post.author.username}}">
+            <img src="{{post.author.profileImageData}}" alt=""/>
+        </a>
         <small>{{post.author.username}}</small>
         <p>{{post.postContent}}</p>
         <small>{{post.date}}</small>

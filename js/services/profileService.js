@@ -1,4 +1,4 @@
-app.factory('profileService', function ($http, baseUrl) {
+app.factory('profileService', function ($http, $q, baseUrl, credentialsService) {
     var serviceUrl =  baseUrl + 'me';
 
     function getNewsFeed(headers, success, error) {
@@ -16,13 +16,34 @@ app.factory('profileService', function ($http, baseUrl) {
     }
 
     function getProfile(headers, success, error) {
-        return $http.get(serviceUrl, {headers: headers})
+        $http.get(serviceUrl, {headers: headers})
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);
     }
 
-    function editProfile(profileData, headers,success, error) {
+    function editProfile(data, headers,success, error) {
+        var profileData = {};
+
+        if (data.name) {
+          profileData['name'] = data.name;
+        } else profileData.name = credentialsService.getName();
+
+        if (data.email) {
+          profileData['email'] = data.email;
+        } else profileData.email = credentialsService.getEmail();
+
+        if (data.gender) {
+          profileData['gender'] = data.gender;
+        }
+        if (data.profileImageData) {
+          profileData['profileImageData'] = data.profileImageData;
+        } else profileData.profileImageData = credentialsService.getProfileImage();
+
+        if (data.coverImageData) {
+          profileData['coverImageData'] = data.coverImageData;
+        } else profileData.coverImageData = credentialsService.getCoverImage();
+
         return $http.put(serviceUrl, profileData, {headers: headers})
             .success(function (data, status, headers, config) {
                 success(data);
