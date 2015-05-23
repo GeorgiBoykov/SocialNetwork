@@ -2,6 +2,7 @@ app.controller('NavBarController', function (
     $scope, $rootScope, $location, userService, credentialsService, profileService, notificationService) {
 
     $scope.showRequests = false;
+    $scope.showSearches = false;
 
     $rootScope.credentialsService = credentialsService;
     if (credentialsService.isLogged()) {
@@ -31,6 +32,26 @@ app.controller('NavBarController', function (
             function (serverError) {
                 console.log(serverError);
             });
+    };
+
+    $scope.searchForUser = function (searchTerm) {
+        if (searchTerm) {
+            $scope.showSearches = true;
+            userService.searchForUser(searchTerm,{Authorization: credentialsService.getSessionToken()},
+                function(serverData) {
+                    $scope.searchResults = serverData;
+                },
+                function (serverError) {
+                    console.log(serverError);
+                });
+        }
+        else{
+            $scope.showSearches = false;
+        }
+    };
+    $scope.clearSearchBox = function () {
+        document.getElementById('searchBox').value = '';
+        $scope.showSearches = false;
     };
 
     $scope.logout = function () {

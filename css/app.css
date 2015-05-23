@@ -49,11 +49,12 @@
 #add-friend-btn{
     margin-right: 2%;
 }
-.friend-requests{
+.popup-list{
     position: absolute;
     margin-top: 5px;
     width: 300px;
-    min-height: 200px;
+    min-height: 100px;
+    max-height: 300px;
     border: 2px solid #426C98;
     border-radius: 3px;
     background-color: white;
@@ -61,7 +62,7 @@
     overflow-y: scroll;
 }
 
-.request-user{
+.user{
     margin: 5px;
     border-bottom: 1px solid #426C98;
 }

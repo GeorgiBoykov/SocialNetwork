@@ -33,11 +33,20 @@ app.factory('userService', function ($http, baseUrl) {
                 success(data);
             }).error(error);
     }
+
+    function searchForUser(searchTerm, headers, success, error) {
+        return $http.get(serviceUrl + '/search?searchTerm='+searchTerm, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     return {
         Register : Register,
         Login : Login,
         Logout : Logout,
         getUserProfile: getUserProfile,
-        getUserWall : getUserWall
+        getUserWall : getUserWall,
+        searchForUser: searchForUser
     }
 });
