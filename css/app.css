@@ -36,8 +36,37 @@
     font-weight: bold;
     color: white;
     text-shadow: 0 0 3px rgba(0,0,0,.8);
-    height: 200px;
+    height: 220px;
     width: 70%;
     background-repeat: no-repeat;
     margin-bottom: 3%;
+}
+
+.add-friend{
+    width: 100%;
+    text-align: right;
+}
+#add-friend-btn{
+    margin-right: 2%;
+}
+.friend-requests{
+    position: absolute;
+    margin-top: 5px;
+    width: 300px;
+    min-height: 200px;
+    border: 2px solid #426C98;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 999;
+    overflow-y: scroll;
+}
+
+.request-user{
+    margin: 5px;
+    border-bottom: 1px solid #426C98;
+}
+
+.request-buttons{
+    text-align: right;
+    margin: 3px;
 }

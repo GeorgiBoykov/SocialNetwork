@@ -20,9 +20,10 @@
                 <li class="active">
                     <a href="#/users/{{credentialsService.getUsername()}}"><span class="sr-only">(current)</span></a></li>
                 <li>
-                    <a href="#/users/{{credentialsService.getUsername()}}/friends">
-                    <img src="img/friends.png" alt="friends"/>
+                    <a href="" ng-click="showRequests = !showRequests">
+                        <img src="{{friendRequests.length > 0 ? 'img/friends-new-request.png': 'img/friends.png'}}" alt=""/>
                     </a>
+                    <div class="friend-requests" ng-include="'partials/friend-requests.html'" ng-if="showRequests"></div>
                 </li>
                 <li>
                     <a href="#/profile-settings">

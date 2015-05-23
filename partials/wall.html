@@ -1,7 +1,12 @@
 <div class="posts" ng-controller="WallController">
     <div class="wall-owner" style="background-image:url({{userData.coverImageData}})">
-        <img class="wall-profile-image" src="{{userData.profileImageData}}" alt=""/>
-        <div>{{userData.name}}</div>
+        <div>
+            <img class="wall-profile-image" src="{{userData.profileImageData}}" alt=""/>
+        </div>
+        <div class="wall-owner-name">{{userData.name}}</div>
+        <div class="add-friend" ng-if="!userData.isFriend && credentialsService.getUsername() != userData.username">
+            <button id="add-friend-btn" class="btn btn-primary" ng-click="addFriend(userData.username)">Add Friend</button>
+        </div>
     </div>
     <div class="add-post" ng-if="isCurrentUser">
         <textarea class="form-control" placeholder="Write new post..." ng-model="newPost"></textarea>

@@ -50,10 +50,34 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
             }).error(error);
     }
 
+    function getFriendRequests(headers, success, error) {
+        return $http.get(serviceUrl + '/requests', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
+    function sendFriendRequest(username, headers, success, error) {
+        return $http.post(serviceUrl + '/requests/'+username, {}, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
+    function respondFriendRequest(requestId, status ,headers, success, error) {
+        return $http.put(serviceUrl + '/requests/'+requestId+'?status='+status, {}, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     return {
         getNewsFeed : getNewsFeed,
         getFriendsList : getFriendsList,
         getProfile : getProfile,
-        editProfile : editProfile
+        editProfile : editProfile,
+        getFriendRequests: getFriendRequests,
+        sendFriendRequest: sendFriendRequest,
+        respondFriendRequest: respondFriendRequest
     }
 });

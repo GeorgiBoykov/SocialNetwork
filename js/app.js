@@ -19,7 +19,7 @@ app.config(['$routeProvider', function (routeProvider) {
         })
         .when('/users/:username', {
             templateUrl: 'partials/wall.html',
-            controller: 'UserController'
+            controller: 'WallController'
         })
         .when('/users/:username/friends', {
             templateUrl: 'partials/friends-list.html',

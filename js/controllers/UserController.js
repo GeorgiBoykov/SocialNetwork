@@ -1,5 +1,6 @@
 app.controller('UserController', function (
-    $scope, $rootScope, $location ,userService, credentialsService, notificationService, $routeParams) {
+    $scope, $rootScope, $location ,userService, credentialsService, notificationService) {
+
     $scope.register = function (registerData) {
         userService.Register(registerData,
             function(serverData) {
@@ -29,32 +30,5 @@ app.controller('UserController', function (
                 console.log(serverError);
             });
     };
-
-    if ($routeParams.username) {
-        loadWallPage($routeParams.username);
-        loadUserData($routeParams.username);
-    }
-    function loadWallPage(username) {
-        userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                console.log(serverData);
-                $scope.posts = serverData;
-                $scope.username = username;
-                $scope.isCurrentUser = credentialsService.getUsername() === username;
-            },
-            function (serverError) {
-                console.log(serverError);
-            });
-    }
-
-    function loadUserData(username) {
-        userService.getUserProfile(username, {Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.userData = serverData;
-            },
-            function (serverError) {
-                console.log(serverError);
-            });
-    }
 
 });

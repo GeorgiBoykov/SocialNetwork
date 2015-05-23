@@ -1,0 +1,10 @@
+<div class="request-user" ng-repeat="request in friendRequests">
+    <a href="#/users/{{request.user.username}}">
+        <img src="{{request.user.profileImageData}}" width="64px" height="64px" alt=""/>
+        <span>{{request.user.name}}</span>
+    </a>
+    <div class="request-buttons">
+        <button ng-click="respondFriendRequest(request.id, 'approve')">Accept</button>
+        <button ng-click="respondFriendRequest(request.id, 'rejected')">Decline</button>
+    </div>
+</div>
