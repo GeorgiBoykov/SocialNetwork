@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="add-post" ng-if="isCurrentUser">
-        <textarea class="form-control" placeholder="Write new post..." ng-model="newPost"></textarea>
+        <textarea id="newPostInput" class="form-control" ng-model="newPost" placeholder="Write new post..."></textarea>
         <button id="add-post-button" class="btn btn-primary" ng-click="addNewPost(newPost)">Post</button>
     </div>
     <blockquote ng-repeat="post in posts">

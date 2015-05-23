@@ -28,11 +28,12 @@ app.controller('WallController',
                 console.log(serverError);
             });
     }
-
     $scope.addNewPost = function (content) {
         postService.addNewPost({postContent: content, username: credentialsService.getUsername()},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 console.log(serverData);
+                loadWallPage(credentialsService.getUsername());
+                document.getElementById('newPostInput').value = '';
             },
             function (serverError) {
                 console.log(serverError);
