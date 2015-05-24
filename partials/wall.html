@@ -1,19 +1,21 @@
 <div class="posts">
     <div class="wall-owner" style="background-image:url({{userData.coverImageData}})">
-        <div>
-            <img class="wall-profile-image" src="{{userData.profileImageData}}" alt=""/>
-        </div>
-        <div class="wall-owner-name">{{userData.name}}</div>
-        <div class="is-friend">
-            <button id="add-friend-btn" ng-if="!userData.isFriend && !isCurrentUser" class="btn btn-primary" ng-click="addFriend(userData.username)">Add Friend</button>
-            <button id="is-friend" ng-if="userData.isFriend && !isCurrentUser" class="btn btn-primary" disabled>Friend</button>
+        <div class="wall-attributes">
+            <div class="wall-profile">
+                <img class="wall-profile-image" src="{{userData.profileImageData}}" alt=""/>
+                <p class="wall-profile-name">{{userData.name}}</p>
+            </div>
+            <div class="is-friend">
+                <button id="add-friend-btn" ng-if="!userData.isFriend && !isCurrentUser" class="btn btn-primary" ng-click="addFriend(userData.username)">Add Friend</button>
+                <button id="is-friend" ng-if="userData.isFriend && !isCurrentUser" class="btn btn-primary" disabled>Friend</button>
+            </div>
         </div>
     </div>
     <div class="add-post" ng-if="isCurrentUser">
         <textarea id="newPostInput" class="form-control" ng-model="newPost" placeholder="Write new post..."></textarea>
         <button id="add-post-button" class="btn btn-primary" ng-click="addNewPost(newPost, userData.username)">Post</button>
     </div>
-    <div class="add-post" ng-if="!isCurrentUser">
+    <div class="add-post" ng-if="!isCurrentUser && userData.isFriend">
         <textarea id="newFriendPostInput" class="form-control" ng-model="newFriendPost" placeholder="Post on {{userData.name}}`s wall..."></textarea>
         <button id="add-friend-post-button" class="btn btn-primary" ng-click="addNewPost(newFriendPost, userData.username)">Post</button>
     </div>

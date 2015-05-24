@@ -9,11 +9,11 @@ app.controller('NavBarController', function (
         credentialsService.refreshProfileData();
     }
 
-    setInterval(function () {
-        if (credentialsService.isLogged()) {
-            getFriendRequests();
-        }
-    }, 3000);
+    //setInterval(function () {
+    //    if (credentialsService.isLogged()) {
+    //        getFriendRequests();
+    //    }
+    //}, 3000);
     function getFriendRequests() {
         profileService.getFriendRequests({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
