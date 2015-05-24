@@ -44,6 +44,7 @@ app.controller('MainController', function (
     function loadNewsFeedPage() {
         profileService.getNewsFeed({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
+                console.log(serverData);
                 $scope.posts = serverData;
             },
             function (serverError) {
@@ -92,16 +93,6 @@ app.controller('MainController', function (
             });
     };
 
-    $scope.addNewPost = function (content, username) {
-        postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $route.reload();
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    };
-
     $scope.addFriend = function (username) {
         profileService.sendFriendRequest(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -111,14 +102,38 @@ app.controller('MainController', function (
             });
     };
 
-    $scope.addNewComment = function (postId, content) {
-        commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
+    $scope.addNewPost = function (content, username) {
+        postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $route.reload();
+                if ($routeParams.username === credentialsService.getUsername()) {
+                    document.getElementById('newPostInput').value = '';
+                } else {
+                    document.getElementById('newFriendPostInput').value = '';
+                }
+
+                if ($location.path() === '/news-feed') {
+                    loadNewsFeedPage();
+                } else{
+                    loadWallPage($routeParams.username)
+                }
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
+    $scope.addNewComment = function (postId, content) {
+        commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                document.getElementById('newCommentInput').value = '';
+                if ($location.path() === '/news-feed') {
+                    loadNewsFeedPage();
+                } else{
+                    loadWallPage($routeParams.username)
+                }
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
 });

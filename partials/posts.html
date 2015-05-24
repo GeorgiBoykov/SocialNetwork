@@ -1,8 +1,10 @@
 <blockquote class="post" ng-repeat="post in posts">
+    <h4 ng-if="post.author.name != post.wallOwner.name">
+        {{post.author.name}}  >  {{post.wallOwner.name}}</h4>
     <a href="#/users/{{post.author.username}}/wall">
         <img src="{{post.author.profileImageData}}" class="post-author-img" alt=""/>
+        <small>{{post.author.name}}</small>
     </a>
-    <small>{{post.author.username}}</small>
     <p>{{post.postContent}}</p>
     <small>{{post.date}}</small>
     <div class="post-attributes">
@@ -11,8 +13,8 @@
         <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>
         <div ng-if="showCommentInput">
             <input type="text" ng-model="commentContent" placeholder="Your comment.."/>
-            <button ng-click="addNewComment(post.id, commentContent)">Add</button>
+            <button id="newCommentInput" ng-click="addNewComment(post.id, commentContent)">Add</button>
         </div>
     </div>
-    <div ng-include="'partials/comment.html'"></div>
+    <div ng-include="'partials/comments.html'"></div>
 </blockquote>
