@@ -1,21 +1,19 @@
 app.controller('WallController',
-    function ($scope,$routeParams, postService, userService, profileService, credentialsService) {
+    function ($scope,$routeParams, postService, userService, profileService, notificationService, credentialsService) {
 
-    if ($routeParams.username ) {
+    if ($routeParams.username) {
         loadWallPage($routeParams.username);
         loadUserData($routeParams.username);
-        console.log(1);
     }
     function loadWallPage(username) {
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                console.log(serverData);
                 $scope.posts = serverData;
                 $scope.username = username;
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     }
 
@@ -25,28 +23,30 @@ app.controller('WallController',
                 $scope.userData = serverData;
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     }
-    $scope.addNewPost = function (content) {
-        postService.addNewPost({postContent: content, username: credentialsService.getUsername()},{Authorization: credentialsService.getSessionToken()},
+    $scope.addNewPost = function (content, username) {
+        postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                console.log(serverData);
-                loadWallPage(credentialsService.getUsername());
-                document.getElementById('newPostInput').value = '';
+                loadWallPage(username);
+                if (username === credentialsService.getUsername()) {
+                    document.getElementById('newPostInput').value = '';
+                } else {
+                    document.getElementById('newFriendPostInput').value = '';
+                }
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
     $scope.addFriend = function (username) {
         profileService.sendFriendRequest(username, {Authorization: credentialsService.getSessionToken()},
         function(serverData) {
-            console.log(serverData);
         },
         function (serverError) {
-            console.log(serverError);
+            notificationService.showErrorMessage(JSON.stringify(serverError));
         });
     }
 });

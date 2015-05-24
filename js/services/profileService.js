@@ -8,13 +8,6 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
             }).error(error);
     }
 
-    function getFriendsList(headers, success, error) {
-        return $http.get(serviceUrl + '/friends', {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    }
-
     function getProfile(headers, success, error) {
         $http.get(serviceUrl, {headers: headers})
             .success(function (data, status, headers, config) {
@@ -49,6 +42,12 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
                 success(data);
             }).error(error);
     }
+    function getMyFriendsList(headers, success, error) {
+        return $http.get(serviceUrl +'/friends', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
 
     function getFriendRequests(headers, success, error) {
         return $http.get(serviceUrl + '/requests', {headers: headers})
@@ -73,9 +72,9 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
 
     return {
         getNewsFeed : getNewsFeed,
-        getFriendsList : getFriendsList,
         getProfile : getProfile,
         editProfile : editProfile,
+        getMyFriendsList: getMyFriendsList,
         getFriendRequests: getFriendRequests,
         sendFriendRequest: sendFriendRequest,
         respondFriendRequest: respondFriendRequest

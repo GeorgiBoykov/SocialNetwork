@@ -20,17 +20,17 @@ app.controller('NavBarController', function (
                 $scope.friendRequests = serverData;
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     }
 
     $scope.respondFriendRequest = function (requestId, status) {
-        profileService.respondFriendRequest(requestId,status,{Authorization: credentialsService.getSessionToken()},
+        profileService.respondFriendRequest(requestId,status,
+            {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                console.log(serverData);
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
@@ -42,7 +42,7 @@ app.controller('NavBarController', function (
                     $scope.searchResults = serverData;
                 },
                 function (serverError) {
-                    console.log(serverError);
+                    notificationService.showErrorMessage(JSON.stringify(serverError));
                 });
         }
         else{
@@ -62,7 +62,7 @@ app.controller('NavBarController', function (
                 $location.path('/');
             },
             function (serverError) {
-                console.log(serverError);
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 

@@ -36,14 +36,14 @@
                     <div class="col-lg-10">
                         <label for="profileImageData">Profile Image</label>
                         <input type="file" fileread="profileImageData" id="profileImageData"/>
-                        <img src="{{profileImageData}}" alt="" width="100px" height="100px"/>
+                        <img src="{{profileImageData || credentialsService.getProfileImage()}}" id="edit-profile-image" alt="profile"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10">
                         <label for="coverImageData">Cover Image</label>
                         <input type="file" fileread="coverImageData" id="coverImageData"/>
-                        <img src="{{coverImageData}}" alt="" width="200px" height="100px"/>
+                        <img src="{{coverImageData || credentialsService.getCoverImage()}}" id="edit-cover-image" alt="cover"/>
                     </div>
                 </div>
                 <div class="form-group">
