@@ -1,3 +1,6 @@
+header{
+    margin-bottom: 100px;
+}
 #wrapper{
     width: 80%;
     margin: 0 auto;
@@ -118,6 +121,7 @@
     box-shadow: 5px 5px 5px #888888;
 }
 .post{
+    color: #242525;
     background-color: #fbffff;
 }
 .post-author-name{
