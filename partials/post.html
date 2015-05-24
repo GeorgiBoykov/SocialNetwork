@@ -1,0 +1,18 @@
+<blockquote class="post" ng-repeat="post in posts">
+    <a href="#/users/{{post.author.username}}/wall">
+        <img src="{{post.author.profileImageData}}" class="post-author-img" alt=""/>
+    </a>
+    <small>{{post.author.username}}</small>
+    <p>{{post.postContent}}</p>
+    <small>{{post.date}}</small>
+    <div class="post-attributes">
+        <span>({{post.likesCount}})</span> <a href="#">Like</a>
+        <span>({{post.comments.length}})</span>
+        <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>
+        <div ng-if="showCommentInput">
+            <input type="text" ng-model="commentContent" placeholder="Your comment.."/>
+            <button ng-click="addNewComment(post.id, commentContent)">Add</button>
+        </div>
+    </div>
+    <div ng-include="'partials/comment.html'"></div>
+</blockquote>

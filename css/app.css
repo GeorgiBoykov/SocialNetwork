@@ -108,3 +108,18 @@
     margin-top: 10px;
     box-shadow: 5px 5px 5px #888888;
 }
+.post{
+    background-color: #fbffff;
+}
+.comment{
+    padding: 5px;
+    font-size: 14px;
+    margin: 5px;
+    background-color: #efecff;
+}
+.comment-author-img{
+    display: inline-block;
+    margin-bottom: 7px;
+    width: 27px;
+    height: 27px;
+}

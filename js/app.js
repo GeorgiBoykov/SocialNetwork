@@ -11,23 +11,23 @@ app.config(['$routeProvider', function (routeProvider) {
     routeProvider
         .when('/', {
             templateUrl: 'partials/authentication.html',
-            controller: 'UserController'
+            controller: 'AuthenticationController'
         })
         .when('/news-feed', {
             templateUrl: 'partials/news-feed.html',
-            controller: 'ProfileController'
+            controller: 'MainController'
         })
-        .when('/users/:username', {
+        .when('/users/:username/wall', {
             templateUrl: 'partials/wall.html',
-            controller: 'WallController'
+            controller: 'MainController'
         })
         .when('/users/:username/friends', {
             templateUrl: 'partials/friends-list.html',
-            controller: 'UserController'
+            controller: 'MainController'
         })
         .when('/profile-settings', {
             templateUrl: 'partials/profile-settings.html',
-            controller: 'ProfileController'
+            controller: 'MainController'
         })
         .otherwise({
             redirectTo: '/'

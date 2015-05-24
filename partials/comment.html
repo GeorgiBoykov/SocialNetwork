@@ -1,0 +1,8 @@
+<div class="comment" ng-repeat="comment in post.comments">
+    <a href="#/users/{{comment.author.username}}">
+        <img src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
+        <span>{{comment.author.username}}</span>
+    </a>
+    <span>{{comment.commentContent}}</span>
+    <p>{{comment.date}}</p>
+</div>

@@ -1,4 +1,4 @@
-app.controller('UserController', function (
+app.controller('AuthenticationController', function (
     $scope, $routeParams, $location ,userService, profileService, credentialsService, notificationService) {
 
     $scope.register = function (registerData) {
@@ -28,33 +28,4 @@ app.controller('UserController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
-
-    if ($routeParams.username) {
-        if ($routeParams.username === credentialsService.getUsername()) {
-            loadMyFriendsList();
-        }
-        else {
-            loadFriendsList($routeParams.username);
-        }
-    }
-
-    function loadFriendsList(username) {
-        userService.getFriendsList(username, {Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.friends = serverData;
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-
-    function loadMyFriendsList() {
-        profileService.getMyFriendsList({Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.friends = serverData;
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
 });

@@ -1,4 +1,4 @@
-<div class="posts">
+<div class="wall">
     <div class="wall-owner" style="background-image:url({{userData.coverImageData}})">
         <div class="wall-attributes">
             <div class="wall-profile">
@@ -19,16 +19,5 @@
         <textarea id="newFriendPostInput" class="form-control" ng-model="newFriendPost" placeholder="Post on {{userData.name}}`s wall..."></textarea>
         <button id="add-friend-post-button" class="btn btn-primary" ng-click="addNewPost(newFriendPost, userData.username)">Post</button>
     </div>
-    <blockquote ng-repeat="post in posts">
-        <a href="#/users/{{post.author.username}}">
-            <img src="{{post.author.profileImageData}}" class="post-author-img" alt=""/>
-        </a>
-        <small>{{post.author.username}}</small>
-        <p>{{post.postContent}}</p>
-        <small>{{post.date}}</small>
-        <div class="post-attributes">
-            <span>({{post.likesCount}})</span> <a href="#">Like</a>
-            <span>({{post.comments.length}})</span> <a href="#">Comment</a>
-        </div>
-    </blockquote>
+    <div class="posts" ng-include="'partials/post.html'"></div>
 </div>

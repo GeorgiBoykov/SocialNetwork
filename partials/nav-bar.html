@@ -12,8 +12,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav" ng-if="credentialsService.isLogged()">
                 <li>
-                    <a href="#/users/{{credentialsService.getUsername()}}">
-                        <img src="{{credentialsService.getProfileImage()}}" width="32px" height="32px" alt="profileImage"/>
+                    <a href="#/users/{{credentialsService.getUsername()}}/wall">
+                        <img src="{{credentialsService.getProfileImage()}}" width="27px" height="27px" alt="profileImage"/>
                         <span>{{credentialsService.getName()}}</span>
                     </a>
                 </li>
@@ -31,7 +31,7 @@
             </ul>
             <form class="navbar-form navbar-left" role="search" ng-if="credentialsService.isLogged()">
                 <div class="form-group">
-                    <input type="text" id="searchBox" ng-model="searchBox" class="form-control" ng-change="searchForUser(searchBox)" placeholder="Search">
+                    <input type="text" id="searchBox" ng-model="searchBox" class="form-control" ng-change="searchForUser(searchBox)" placeholder="Search friend">
                 </div>
                 <div class="popup-list" ng-include="'partials/search-results.html'" ng-if="showSearches"></div>
             </form>
