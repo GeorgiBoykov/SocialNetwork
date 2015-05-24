@@ -9,6 +9,9 @@
     padding: 2%;
     margin-bottom: 3%;
 }
+.posts-comments-attributes{
+    font-size: 14px;
+}
 
 .post-author-img{
     width: 64px;
@@ -50,7 +53,7 @@
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-bottom: 8%;
+    margin-bottom: 10%;
     padding: 10px;
 }
 
@@ -60,6 +63,12 @@
 }
 
 .is-friend{
+    display: inline-block;
+    float: right;
+    text-align: right;
+    margin-top: 80px;
+}
+.pending-request{
     display: inline-block;
     float: right;
     text-align: right;
@@ -103,13 +112,21 @@
     box-shadow: 5px 5px 5px #888888;
 }
 #edit-cover-image{
-    width: 300px;
+    width: 70%;
     height: 100px;
     margin-top: 10px;
     box-shadow: 5px 5px 5px #888888;
 }
 .post{
     background-color: #fbffff;
+}
+.post-author-name{
+    font-size: 14px;
+    color: #196baa;
+}
+
+.post-author{
+    margin-bottom: 10px;
 }
 .comment{
     padding: 5px;
@@ -122,4 +139,16 @@
     margin-bottom: 7px;
     width: 27px;
     height: 27px;
+}
+
+.likes-comments{
+    color: #666666;
+}
+
+.wall-post-to{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.date{
+    font-size: 12px;
 }

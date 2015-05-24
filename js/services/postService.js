@@ -8,7 +8,15 @@ app.factory('postService', function ($http, baseUrl) {
 	        }).error(error);
 	}
 
+	function likePost(postId, headers, success, error) {
+		return $http.post(serviceUrl + '/'+ postId+ '/likes', {}, {headers: headers})
+			.success(function (data, status, headers, config) {
+				success(data);
+			}).error(error);
+	}
+
 	return {
-		addNewPost: addNewPost
+		addNewPost: addNewPost,
+		likePost : likePost
 	}
 });

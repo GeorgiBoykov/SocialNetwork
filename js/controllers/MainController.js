@@ -44,7 +44,6 @@ app.controller('MainController', function (
     function loadNewsFeedPage() {
         profileService.getNewsFeed({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                console.log(serverData);
                 $scope.posts = serverData;
             },
             function (serverError) {
@@ -62,6 +61,7 @@ app.controller('MainController', function (
     function loadWallPage(username) {
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
+                console.log(serverData);
                 $scope.posts = serverData;
                 $scope.username = username;
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
@@ -96,6 +96,7 @@ app.controller('MainController', function (
     $scope.addFriend = function (username) {
         profileService.sendFriendRequest(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
+                document.getElementById('add-friend-btn').disabled = true;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -111,11 +112,17 @@ app.controller('MainController', function (
                     document.getElementById('newFriendPostInput').value = '';
                 }
 
-                if ($location.path() === '/news-feed') {
-                    loadNewsFeedPage();
-                } else{
-                    loadWallPage($routeParams.username)
-                }
+                RefreshData();
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.likePost = function (postId) {
+        postService.likePost(postId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                RefreshData();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -126,14 +133,28 @@ app.controller('MainController', function (
         commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 document.getElementById('newCommentInput').value = '';
-                if ($location.path() === '/news-feed') {
-                    loadNewsFeedPage();
-                } else{
-                    loadWallPage($routeParams.username)
-                }
+                RefreshData();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
+    $scope.likeComment = function (postId, commentId) {
+        commentService.likeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                RefreshData();
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    function RefreshData() {
+        if ($location.path() === '/news-feed') {
+            loadNewsFeedPage();
+        } else{
+            loadWallPage($routeParams.username)
+        }
+    }
 });
