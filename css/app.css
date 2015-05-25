@@ -33,7 +33,8 @@ header{
 }
 
 .top-friend-bar{
-    display: inline-flex;
+    display: inline-block;
+    vertical-align: middle;
     width: 85px;
     height: 120px;
     font-size: 12px;
@@ -216,8 +217,12 @@ header{
         display: block;
         float: none;
         width: 100%;
+        margin-bottom: 10px;
     }
     .friend-bar-all-name{
         display: block;
+    }
+    .top-friend-bar{
+        display: inline-block;
     }
 }

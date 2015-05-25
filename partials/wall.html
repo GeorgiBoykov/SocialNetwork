@@ -8,7 +8,7 @@
             <div class="is-friend">
                 <button id="add-friend-btn" ng-if="!userData.isFriend && !isCurrentUser && !userData.hasPendingRequest" class="btn btn-primary" ng-click="addFriend(userData.username)">Add Friend</button>
                 <button id="is-friend" ng-if="userData.isFriend && !isCurrentUser" class="btn btn-primary" disabled>Friend</button>
-                <button id="pending-request" ng-if="userData.hasPendingRequest" class="btn btn-primary" disabled>Pending Request</button>
+                <button id="pending-request" ng-if="userData.hasPendingRequest && !isCurrentUser" class="btn btn-primary" disabled>Pending Request</button>
             </div>
         </div>
     </div>
