@@ -24,12 +24,20 @@ header{
     border: 1px solid #446D9A;
     border-radius: 2px;
     width: 30%;
+    padding: 5px;
     height: auto;
 }
-.friend-bar-top{
+.top-friend-image{
+    width: 80px;
+    height: 80px;
+}
+
+.top-friend-bar{
+    display: inline-flex;
+    width: 85px;
+    height: 120px;
     font-size: 12px;
-    display: inline-block;
-    margin: 5px;
+    margin: 3px;
 }
 .all-friends{
     width: 70%;
