@@ -2,12 +2,17 @@ app.controller('MainController', function (
     $scope, $routeParams,$route, $location ,userService, postService,
     profileService,commentService, credentialsService, notificationService) {
 
+    if (!credentialsService.isLogged()) {
+        $location.path('/');
+        return 0;
+    }
+
     $scope.showCommentInput = false;
 
     //Auto - Function calls
 
     //Load Friends list
-    if ($routeParams.username) {
+    if ($location.path() === '/users/' + $routeParams.username + '/friends') {
         console.log('Friends loaded');
         if ($routeParams.username === credentialsService.getUsername()) {
             loadMyFriendsList();
@@ -16,10 +21,13 @@ app.controller('MainController', function (
             loadFriendsList($routeParams.username);
         }
     }
+
     function loadFriendsList(username) {
         userService.getFriendsList(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.friends = serverData;
+                loadUserData($routeParams.username);
+                console.log(serverData);
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -30,6 +38,31 @@ app.controller('MainController', function (
         profileService.getMyFriendsList({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.friends = serverData;
+                $scope.userData ={name : credentialsService.getName()};
+                console.log(serverData);
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    }
+
+    function loadTopFriendsList(username) {
+        userService.getTopFriendsList(username, {Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.topFriends = serverData;
+                $scope.username = username;
+                console.log(serverData);
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    }
+    function loadMyTopFriendsList() {
+        profileService.getMyTopFriendsList({Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.topFriends = serverData;
+                $scope.username = credentialsService.getUsername();
+                console.log(serverData);
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -45,6 +78,7 @@ app.controller('MainController', function (
         profileService.getNewsFeed({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.posts = serverData;
+                loadMyTopFriendsList();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -53,15 +87,19 @@ app.controller('MainController', function (
     //--end
 
     // Load wall page
-    if ($routeParams.username) {
+    if ($location.path() === '/users/' + $routeParams.username + '/wall') {
         console.log('Wall loaded');
         loadWallPage($routeParams.username);
         loadUserData($routeParams.username);
+        if (credentialsService.getUsername() === $routeParams.username) {
+            loadMyTopFriendsList();
+        } else{
+            loadTopFriendsList($routeParams.username);
+        }
     }
     function loadWallPage(username) {
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                console.log(serverData);
                 $scope.posts = serverData;
                 $scope.username = username;
                 $scope.isCurrentUser = credentialsService.getUsername() === username;

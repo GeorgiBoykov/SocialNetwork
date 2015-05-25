@@ -1,0 +1,7 @@
+<h2>Friends - <a href="#/users/{{username}}/friends">{{topFriends.totalCount}} total</a></h2>
+<div class="friend-bar-top" ng-repeat="friend in topFriends.friends">
+    <a href="#/users/{{friend.username}}/wall">
+        <img src="{{friend.profileImageData}}" alt="image"/>
+        <div>{{friend.name}}</div>
+    </a>
+</div>

@@ -34,6 +34,13 @@ app.factory('userService', function ($http, baseUrl) {
             }).error(error);
     }
 
+    function getTopFriendsList(username, headers, success, error) {
+        return $http.get(serviceUrl +'/'+ username+ '/friends/preview', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     function getUserWall(username, headers, success, error) {
         return $http.get(serviceUrl + '/'+username+'/wall?StartPostId=&PageSize=5', {headers: headers})
             .success(function (data, status, headers, config) {
@@ -54,6 +61,7 @@ app.factory('userService', function ($http, baseUrl) {
         Logout : Logout,
         getUserProfile: getUserProfile,
         getFriendsList: getFriendsList,
+        getTopFriendsList: getTopFriendsList,
         getUserWall : getUserWall,
         searchForUser: searchForUser
     }

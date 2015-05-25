@@ -1,16 +1,50 @@
 header{
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 #wrapper{
     width: 80%;
     margin: 0 auto;
 }
 
-#news-feed-header{
+.header-title{
     border: 3px solid #426C98;
     border-radius: 5px;
     padding: 2%;
     margin-bottom: 3%;
+}
+.posts-wrapper{
+    display: inline-block;
+    float: left;
+    width: 65%;
+}
+
+.top-friends{
+    display: inline-block;
+    float: right;
+    border: 1px solid #446D9A;
+    border-radius: 2px;
+    width: 30%;
+    height: auto;
+}
+.friend-bar-top{
+    font-size: 12px;
+    display: inline-block;
+    margin: 5px;
+}
+.all-friends{
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid #446D9A;
+    border-radius: 2px;
+}
+.filter-friends-bar{
+    width: 30%;
+    margin: 0 auto;
+}
+.friend-bar-all{
+    width: 45%;
+    margin: 5px;
+    display: inline-block;
 }
 .posts-comments-attributes{
     font-size: 14px;
@@ -22,7 +56,7 @@ header{
 }
 
 .add-post{
-    width: 50%;
+    width: 60%;
     margin-bottom: 3%;
 }
 
@@ -155,4 +189,27 @@ header{
 }
 .date{
     font-size: 12px;
+}
+
+@media (max-width: 950px) {
+    #wrapper{
+        width: 90%;
+    }
+
+    .add-post{
+        width: 80%;
+    }
+    .posts-wrapper{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    .top-friends{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    .friend-bar-all-name{
+        display: block;
+    }
 }

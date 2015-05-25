@@ -1,0 +1,15 @@
+<h1 class="header-title">{{userData.name}}`s Friends</h1>
+<div class="filter-friends-bar">
+    <div class="form-group">
+        <label class="control-label" for="inputDefault">Name Filter:</label>
+        <input type="text" ng-model="filterFriends" class="form-control" id="inputDefault" placeholder="Search...">
+    </div>
+</div>
+<div class="all-friends">
+    <div class="friend-bar-all" ng-repeat="friend in friends | filter: filterFriends">
+        <a href="#/users/{{friend.username}}/wall">
+            <img src="{{friend.profileImageData}}" alt="image"/>
+            <span class="friend-bar-all-name">{{friend.name}}</span>
+        </a>
+    </div>
+</div>

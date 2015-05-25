@@ -12,13 +12,16 @@
             </div>
         </div>
     </div>
-    <div class="add-post" ng-if="isCurrentUser">
-        <textarea id="newPostInput" class="form-control" ng-model="newPost" placeholder="Write new post..."></textarea>
-        <button id="add-post-button" class="btn btn-primary" ng-click="addNewPost(newPost, userData.username)">Post</button>
+    <div class="posts-wrapper">
+        <div class="add-post" ng-if="isCurrentUser">
+            <textarea id="newPostInput" class="form-control" ng-model="newPost" placeholder="Write new post..."></textarea>
+            <button id="add-post-button" class="btn btn-primary" ng-click="addNewPost(newPost, userData.username)">Post</button>
+        </div>
+        <div class="add-post" ng-if="!isCurrentUser && userData.isFriend">
+            <textarea id="newFriendPostInput" class="form-control" ng-model="newFriendPost" placeholder="Post on {{userData.name}}`s wall..."></textarea>
+            <button id="add-friend-post-button" class="btn btn-primary" ng-click="addNewPost(newFriendPost, userData.username)">Post</button>
+        </div>
+        <div class="posts" ng-include="'partials/posts.html'"></div>
     </div>
-    <div class="add-post" ng-if="!isCurrentUser && userData.isFriend">
-        <textarea id="newFriendPostInput" class="form-control" ng-model="newFriendPost" placeholder="Post on {{userData.name}}`s wall..."></textarea>
-        <button id="add-friend-post-button" class="btn btn-primary" ng-click="addNewPost(newFriendPost, userData.username)">Post</button>
-    </div>
-    <div class="posts" ng-include="'partials/posts.html'"></div>
+    <div class="top-friends" ng-include="'partials/top-friends.html'"></div>
 </div>

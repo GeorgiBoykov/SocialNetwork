@@ -1,4 +1,4 @@
-app.factory('credentialsService', function ($rootScope, $http, baseUrl, anonymousImage) {
+app.factory('credentialsService', function ($http, baseUrl, anonymousImage) {
 
     function getSessionToken() {
         return sessionStorage.getItem('sessionToken');
