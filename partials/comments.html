@@ -5,7 +5,20 @@
     </a>
     <span>{{comment.commentContent}}</span>
     <div class="post-attributes">
-        <span><a class="likes-comments" href="">({{comment.likesCount}})</a></span>
+        <span>
+            <a class="likes-comments"
+                 ng-mouseleave="hideElement(comment.id)"
+                 ng-mouseenter="getCommentTopLikes(post.id, comment.id)
+                 "href="">({{comment.likesCount}})
+            </a>
+        </span>
+        <div id="{{comment.id}}" class="toplikes-balloon">
+            <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
+                <img class="liker-photo" src="{{like.user.profileImageData}}" alt=""/>
+                <p>{{like.user.name}}</p>
+            </div>
+        </div>
+
         <a ng-if="!comment.liked" href="" ng-click="likeComment(post.id, comment.id)">Like</a>
         <a ng-if="comment.liked" href="" ng-click="unlikeComment(post.id, comment.id)">Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>

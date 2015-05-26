@@ -8,6 +8,7 @@ app.controller('MainController', function (
     }
 
     $scope.showCommentInput = false;
+    $scope.showPostTopLikes = false;
 
     //Auto - Function calls
 
@@ -42,6 +43,7 @@ app.controller('MainController', function (
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.posts = serverData;
+                console.log(serverData);
                 $scope.username = username;
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
             },
@@ -116,6 +118,18 @@ app.controller('MainController', function (
             });
     };
 
+    $scope.getPostTopLikes = function (postId) {
+        document.getElementById(postId).style.display = 'block';
+        postService.getPostTopLikes(postId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.postTopLikes = serverData;
+                console.log(serverData);
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
     $scope.likePost = function (postId) {
         postService.likePost(postId,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -146,6 +160,18 @@ app.controller('MainController', function (
             });
     };
 
+    $scope.getCommentTopLikes = function (postId, commentId) {
+        document.getElementById(commentId).style.display = 'block';
+        commentService.getCommentTopLikes(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.commentTopLikes = serverData;
+                console.log(serverData);
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
     $scope.likeComment = function (postId, commentId) {
         commentService.likeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -164,6 +190,11 @@ app.controller('MainController', function (
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
+    };
+
+    // Utils
+    $scope.hideElement = function (id) {
+        document.getElementById(id).style.display = 'none';
     };
 
     function RefreshData() {

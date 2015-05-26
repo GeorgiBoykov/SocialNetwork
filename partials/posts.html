@@ -13,11 +13,18 @@
     </div>
     <p>{{post.postContent}}</p>
     <div class="posts-comments-attributes">
-        <span><a class="likes-comments" href="">({{post.likesCount}})</a></span>
+
+        <span>
+            <a class="likes-comments"
+                 ng-mouseleave="hideElement(post.id)"
+                 ng-mouseenter="getPostTopLikes(post.id)" href="">({{post.likesCount}})
+            </a>
+        </span>
+        <div id="{{post.id}}" class="toplikes-balloon" ng-include="'partials/top-likes.html'"></div>
         <a ng-if="!post.liked" href="" ng-click="likePost(post.id)">Like</a>
         <a ng-if="post.liked" href="" ng-click="unlikePost(post.id)">Unlike</a>
 
-        <span><a href="" class="likes-comments">({{post.comments.length}})</a></span>
+        <span><a href="" class="likes-comments">({{post.totalCommentsCount}})</a></span>
         <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>
 
         <div ng-if="showCommentInput">
