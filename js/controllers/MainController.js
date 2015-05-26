@@ -11,65 +11,6 @@ app.controller('MainController', function (
 
     //Auto - Function calls
 
-    //Load Friends list
-    if ($location.path() === '/users/' + $routeParams.username + '/friends') {
-        console.log('Friends loaded');
-        if ($routeParams.username === credentialsService.getUsername()) {
-            loadMyFriendsList();
-        }
-        else {
-            loadFriendsList($routeParams.username);
-        }
-    }
-
-    function loadFriendsList(username) {
-        userService.getFriendsList(username, {Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.friends = serverData;
-                loadUserData($routeParams.username);
-                console.log(serverData);
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-
-    function loadMyFriendsList() {
-        profileService.getMyFriendsList({Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.friends = serverData;
-                $scope.userData ={name : credentialsService.getName()};
-                console.log(serverData);
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-
-    function loadTopFriendsList(username) {
-        userService.getTopFriendsList(username, {Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.topFriends = serverData;
-                $scope.username = username;
-                console.log(serverData);
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-    function loadMyTopFriendsList() {
-        profileService.getMyTopFriendsList({Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.topFriends = serverData;
-                $scope.username = credentialsService.getUsername();
-                console.log(serverData);
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-    //--end
-
     //Load News-feed page
     if ($location.path() === '/news-feed') {
         loadNewsFeedPage();
@@ -88,15 +29,15 @@ app.controller('MainController', function (
 
     // Load wall page
     if ($location.path() === '/users/' + $routeParams.username + '/wall') {
-        console.log('Wall loaded');
         loadWallPage($routeParams.username);
         loadUserData($routeParams.username);
         if (credentialsService.getUsername() === $routeParams.username) {
             loadMyTopFriendsList();
-        } else{
+        } else {
             loadTopFriendsList($routeParams.username);
         }
     }
+
     function loadWallPage(username) {
         userService.getUserWall(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -120,16 +61,34 @@ app.controller('MainController', function (
     }
     //--end
 
-    //Event - Handlers
-    $scope.editProfile = function (data) {
-        profileService.editProfile(data, {Authorization: credentialsService.getSessionToken()},
+    //Load top friends
+    function loadTopFriendsList(username) {
+        userService.getTopFriendsList(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                credentialsService.refreshProfileData();
+                $scope.topFriends = serverData;
+                $scope.username = username;
+            },
+            function (serverError) {
+                //notificationService.showErrorMessage(JSON.stringify(serverError));
+                $scope.friendsError = serverError;
+            });
+    }
+
+    function loadMyTopFriendsList() {
+        profileService.getMyTopFriendsList({Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.topFriends = serverData;
+                $scope.username = credentialsService.getUsername();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
-    };
+    }
+    //--end
+
+
+
+    //Event - Handlers
 
     $scope.addFriend = function (username) {
         profileService.sendFriendRequest(username, {Authorization: credentialsService.getSessionToken()},
@@ -166,6 +125,15 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+    $scope.unlikePost = function (postId) {
+        postService.unlikePost(postId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                RefreshData();
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
 
     $scope.addNewComment = function (postId, content) {
         commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
@@ -180,6 +148,16 @@ app.controller('MainController', function (
 
     $scope.likeComment = function (postId, commentId) {
         commentService.likeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                RefreshData();
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.unlikeComment = function (postId, commentId) {
+        commentService.unlikeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 RefreshData();
             },

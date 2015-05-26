@@ -7,7 +7,7 @@
     <div class="post-attributes">
         <span><a class="likes-comments" href="">({{comment.likesCount}})</a></span>
         <a ng-if="!comment.liked" href="" ng-click="likeComment(post.id, comment.id)">Like</a>
-        <span ng-if="comment.liked">Liked</span>
+        <a ng-if="comment.liked" href="" ng-click="unlikeComment(post.id, comment.id)">Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
 </div>

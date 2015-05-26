@@ -15,7 +15,7 @@
     <div class="posts-comments-attributes">
         <span><a class="likes-comments" href="">({{post.likesCount}})</a></span>
         <a ng-if="!post.liked" href="" ng-click="likePost(post.id)">Like</a>
-        <span ng-if="post.liked">Liked</span>
+        <a ng-if="post.liked" href="" ng-click="unlikePost(post.id)">Unlike</a>
 
         <span><a href="" class="likes-comments">({{post.comments.length}})</a></span>
         <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>

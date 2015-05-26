@@ -15,8 +15,16 @@ app.factory('commentService', function ($http, baseUrl) {
             }).error(error);
     }
 
+    function unlikeComment(postId, commentId, headers, success, error) {
+        return $http.delete(serviceUrl + '/'+ postId+ '/comments/' + commentId + '/likes', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     return {
         addNewComment: addNewComment,
-        likeComment: likeComment
+        likeComment: likeComment,
+        unlikeComment: unlikeComment
     }
 });
