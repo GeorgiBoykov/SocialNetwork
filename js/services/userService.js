@@ -41,8 +41,14 @@ app.factory('userService', function ($http, baseUrl) {
             }).error(error);
     }
 
-    function getUserWall(username, headers, success, error) {
-        return $http.get(serviceUrl + '/'+username+'/wall?StartPostId=&PageSize=5', {headers: headers})
+    function getUserWall(username, startPostId, pageSize, headers, success, error) {
+        if (!startPostId) {
+            startPostId = '';
+        }
+        if (!pageSize) {
+            pageSize = '5';
+        }
+        return $http.get(serviceUrl + '/'+username+'/wall?StartPostId='+startPostId+'&PageSize='+pageSize, {headers: headers})
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);

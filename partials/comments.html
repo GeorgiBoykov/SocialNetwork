@@ -1,26 +1,31 @@
-<div class="comment" ng-repeat="comment in post.comments">
+<div class="comment" ng-repeat="(commentKey, comment) in post.comments">
     <a href="#/users/{{comment.author.username}}/wall">
         <img src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
         <span>{{comment.author.name}}</span>
     </a>
     <span>{{comment.commentContent}}</span>
     <div class="post-attributes">
-        <span>
-            <a class="likes-comments"
-                 ng-mouseleave="hideElement(comment.id)"
-                 ng-mouseenter="getCommentTopLikes(post.id, comment.id)
-                 "href="">({{comment.likesCount}})
-            </a>
-        </span>
-        <div id="{{comment.id}}" class="toplikes-balloon">
-            <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
-                <img class="liker-photo" src="{{like.user.profileImageData}}" alt=""/>
-                <p>{{like.user.name}}</p>
+        <span ng-mouseleave="hideElement(comment.id)">
+            <span>
+                <a class="likes-comments"
+                     ng-mouseenter="getCommentTopLikes(post.id, comment.id)"
+                     ng-click="hideElement(comment.id)"
+                     href="">({{comment.likesCount}})
+                </a>
+            </span>
+            <div id="{{comment.id}}" class="toplikes-balloon">
+                <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
+                    <a href="#/users/{{like.user.username}}/wall">
+                        <img class="liker-photo" src="{{like.user.profileImageData}}" alt=""/>
+                        <p>{{like.user.name}}</p>
+                    </a>
+                </div>
+                <p ng-if="commentTopLikes.totalLikeCount == 0">No Likes...</p>
             </div>
-        </div>
+        </span>
 
-        <a ng-if="!comment.liked" href="" ng-click="likeComment(post.id, comment.id)">Like</a>
-        <a ng-if="comment.liked" href="" ng-click="unlikeComment(post.id, comment.id)">Unlike</a>
+        <a ng-if="!comment.liked" href="" ng-click="likeComment(postKey, commentKey, post.id, comment.id)">Like</a>
+        <a ng-if="comment.liked" href="" ng-click="unlikeComment(postKey,commentKey, post.id, comment.id)">Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
 </div>

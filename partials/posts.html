@@ -1,4 +1,4 @@
-<blockquote class="post" ng-repeat="post in posts">
+<blockquote class="post" ng-repeat="(postKey, post) in posts">
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
         >
@@ -13,23 +13,26 @@
     </div>
     <p>{{post.postContent}}</p>
     <div class="posts-comments-attributes">
-
-        <span>
-            <a class="likes-comments"
-                 ng-mouseleave="hideElement(post.id)"
-                 ng-mouseenter="getPostTopLikes(post.id)" href="">({{post.likesCount}})
-            </a>
+        <span ng-mouseleave="hideElement(post.id)">
+            <span>
+                <a class="likes-comments"
+                     ng-mouseenter="getPostTopLikes(post.id)"
+                     ng-click="hideElement(post.id)" 
+                     href="">({{post.likesCount}})
+                </a>
+            </span>
+            <div id="{{post.id}}" class="toplikes-balloon" 
+            ng-include="'partials/top-likes.html'"></div>
         </span>
-        <div id="{{post.id}}" class="toplikes-balloon" ng-include="'partials/top-likes.html'"></div>
-        <a ng-if="!post.liked" href="" ng-click="likePost(post.id)">Like</a>
-        <a ng-if="post.liked" href="" ng-click="unlikePost(post.id)">Unlike</a>
+        <a ng-if="!post.liked" href="" ng-click="likePost(postKey, post.id)">Like</a>
+        <a ng-if="post.liked" href="" ng-click="unlikePost(postKey, post.id)">Unlike</a>
 
         <span><a href="" class="likes-comments">({{post.totalCommentsCount}})</a></span>
         <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>
 
         <div ng-if="showCommentInput">
             <input type="text" ng-model="commentContent" placeholder="Your comment.."/>
-            <button id="newCommentInput" ng-click="addNewComment(post.id, commentContent)">Add</button>
+            <button id="newCommentInput" ng-click="addNewComment(postKey, post.id, commentContent)">Add</button>
         </div>
     </div>
     <div ng-include="'partials/comments.html'"></div>

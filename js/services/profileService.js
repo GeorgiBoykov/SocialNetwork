@@ -1,8 +1,14 @@
 app.factory('profileService', function ($http, $q, baseUrl, credentialsService) {
     var serviceUrl =  baseUrl + 'me';
 
-    function getNewsFeed(headers, success, error) {
-        return $http.get(serviceUrl + '/feed?StartPostId=&PageSize=5', {headers: headers})
+    function getNewsFeed(startPostId, pageSize, headers, success, error) {
+        if (!startPostId) {
+            startPostId = '';
+        }
+        if (!pageSize) {
+            pageSize = '5';
+        }
+        return $http.get(serviceUrl+'/feed?StartPostId='+startPostId+'&PageSize='+pageSize, {headers: headers})
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);
