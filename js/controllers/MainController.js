@@ -6,24 +6,26 @@ app.controller('MainController', function (
         $location.path('/');
         return 0;
     }
+
     $scope.posts = {};
+    var _defaultPostsPerPage = 5;
+    //Sort posts
+    $scope.objectKeys = function(obj){
+        return Object.keys(obj);
+    };
 
     //Dynamic Scrolling
     window.onscroll = function(){
         if (document.body.scrollHeight - window.scrollY  <= window.innerHeight){
-            var lastElementNum = Object.keys($scope.posts).pop();
+            var lastElementKey = (Object.keys($scope.posts)).length-1;
             if ($location.path() === '/news-feed') {
-                loadNewsFeedPage($scope.posts[lastElementNum].id, 5, lastElementNum);
+                loadNewsFeedPage($scope.posts[lastElementKey].id,
+                    _defaultPostsPerPage, lastElementKey);
             } else{
-                loadWallPage($routeParams.username, $scope.posts[lastElementNum].id, 5, lastElementNum);
-                loadUserData($routeParams.username);
-                if (credentialsService.getUsername() === $routeParams.username) {
-                    loadMyTopFriendsList();
-                } else {
-                    loadTopFriendsList($routeParams.username);
-                }
+                loadWallPage($routeParams.username, $scope.posts[lastElementKey].id,
+                    _defaultPostsPerPage, lastElementKey);
             }
-        } 
+        }
     };
 
     //Auto - Function calls
@@ -32,15 +34,16 @@ app.controller('MainController', function (
     if ($location.path() === '/news-feed') {
         loadNewsFeedPage();
     }
-    function loadNewsFeedPage(startPostId, pageSize, lastElementNum) {
-        if (!lastElementNum) {
-            lastElementNum = 0;
+    function loadNewsFeedPage(startPostId, pageSize, lastElementKey) {
+        if (!lastElementKey) {
+            lastElementKey = -1;
+            $scope.posts = {};
         }
         profileService.getNewsFeed(startPostId, pageSize,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                for (var post in serverData) {
-                    var position = (Number(post) + Number(lastElementNum) + 1);
-                    $scope.posts[position] = serverData[post];
+                for (var postKey in serverData) {
+                    var newKey = (Number(postKey) + Number(lastElementKey) + 1);
+                    $scope.posts[newKey] = serverData[postKey];
                 }
                 loadMyTopFriendsList();
             },
@@ -61,15 +64,16 @@ app.controller('MainController', function (
         }
     }
 
-    function loadWallPage(username, startPostId, pageSize, lastElementNum) {
-        if (!lastElementNum) {
-            lastElementNum = 0;
+    function loadWallPage(username, startPostId, pageSize, lastElementKey) {
+        if (!lastElementKey) {
+            lastElementKey = -1;
+            $scope.posts = {};
         }
         userService.getUserWall(username, startPostId, pageSize,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                for (var post in serverData) {
-                    var position = (Number(post) + Number(lastElementNum) + 1);
-                    $scope.posts[position] = serverData[post];
+                for (var postKey in serverData) {
+                    var newKey = (Number(postKey) + Number(lastElementKey) + 1);
+                    $scope.posts[newKey] = serverData[postKey];
                 }
                 $scope.username = username;
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
