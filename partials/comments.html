@@ -1,4 +1,6 @@
-<div class="comment" ng-repeat="(commentKey, comment) in post.comments">
+<div class="comment"
+     ng-repeat="commentKey in objectKeys(post.comments)"
+     ng-init="comment = post.comments[commentKey]">
     <a href="#/users/{{comment.author.username}}/wall">
         <img src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
         <span>{{comment.author.name}}</span>

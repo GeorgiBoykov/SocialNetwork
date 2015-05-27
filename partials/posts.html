@@ -1,4 +1,4 @@
-<blockquote class="post" ng-repeat="key in objectKeys(posts)" ng-init="post = posts[key]">
+<blockquote class="post" ng-repeat="postKey in objectKeys(posts)" ng-init="post = posts[postKey]">
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
         >
