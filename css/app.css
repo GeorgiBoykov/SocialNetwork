@@ -233,7 +233,9 @@ header{
 #add-comment-area{
     margin-bottom: 5px;
 }
-
+.footer{
+    /*display: block;*/
+}
 @media (max-width: 950px) {
     #wrapper{
         width: 90%;

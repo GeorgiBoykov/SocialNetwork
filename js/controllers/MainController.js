@@ -263,7 +263,7 @@ app.controller('MainController', function (
     function FillProgressBar() {
         setTimeout(function () {
             document.getElementById('posts-progress-bar').style.width = '100%';
-        }, 100);
+        }, 70);
     }
 
     function ClearProgressBar() {
