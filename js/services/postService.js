@@ -8,9 +8,15 @@ app.factory('postService', function ($http, baseUrl) {
 	        }).error(error);
 	}
 
-
 	function editPost(postId, postContent, headers,success, error) {
 	    return $http.put(serviceUrl + '/' + postId, {postContent:postContent}, {headers: headers})
+	        .success(function (data, status, headers, config) {
+	            success(data);
+	        }).error(error);
+	}
+
+	function deletePost(postId, headers,success, error) {
+	    return $http.delete(serviceUrl + '/' + postId, {headers: headers})
 	        .success(function (data, status, headers, config) {
 	            success(data);
 	        }).error(error);
@@ -40,6 +46,7 @@ app.factory('postService', function ($http, baseUrl) {
 	return {
 		addNewPost: addNewPost,
 		editPost: editPost,
+		deletePost: deletePost,
 		getPostTopLikes: getPostTopLikes,
 		likePost : likePost,
 		unlikePost: unlikePost

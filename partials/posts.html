@@ -1,8 +1,8 @@
 <blockquote class="post" ng-repeat="postKey in objectKeys(posts)" ng-init="post = posts[postKey]">
     <div class="post-control" ng-if="post.author.username == credentialsService.getUsername()">
         <a href="" ng-click="post.showEditPostInput = !post.showEditPostInput">Edit</a>
-        <a href="">Delete</a>
-        <span>{{showEditPostInput}}</span>
+        <a href="" ng-click="showDialog('#confirm-delete')">Delete</a>
+        <div ng-include="'partials/dialog-window.html'"></div>
     </div>
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>

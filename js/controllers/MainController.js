@@ -155,6 +155,17 @@ app.controller('MainController', function (
             });
     };
 
+    $scope.deletePost = function(post, postKey, dialog) {
+        $(dialog).modal('hide');
+        postService.deletePost(post.id,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                delete $scope.posts[postKey];
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+    
     $scope.getPostTopLikes = function (post) {
         post.showLikesBalloon = !post.showLikesBalloon;
         postService.getPostTopLikes(post.id, {Authorization: credentialsService.getSessionToken()},
@@ -241,5 +252,10 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
+    $scope.showDialog = function (dialog) {
+        $(dialog).modal('show');
+    };
+
 
 });
