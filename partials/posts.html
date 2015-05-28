@@ -1,7 +1,8 @@
 <blockquote class="post" ng-repeat="postKey in objectKeys(posts)" ng-init="post = posts[postKey]">
-    <div class="post-control">
-        <a href="" ng-click="editPostInput = !editPostInput">Edit</a>
-        <a href="" ng-click="deletePostInput = !deletePostInput">Delete</a>
+    <div class="post-control" ng-if="post.author.username == credentialsService.getUsername()">
+        <a href="" ng-click="post.showEditPostInput = !post.showEditPostInput">Edit</a>
+        <a href="">Delete</a>
+        <span>{{showEditPostInput}}</span>
     </div>
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
@@ -15,39 +16,37 @@
         </a>
         <span class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
-    <p ng-if="!editPostInput">{{post.postContent}}</p>
-    <div ng-if="editPostInput">
-    <textarea ng-model="newContent" class="form-control" 
-    ng-init="newContent=post.postContent">{{post.postContent}}</textarea>
-    <button ng-click="editPost(postKey, post.id, newContent)">Save</button>
+    <p ng-if="!post.showEditPostInput">{{post.postContent}}</p>
+    <div class="edit-post" ng-if="post.showEditPostInput">
+        <textarea ng-model="newContent" class="form-control"
+        ng-init="newContent=post.postContent">{{post.postContent}}</textarea>
+        <a class="btn btn-primary btn-xs" ng-click="editPost(post, newContent)">Save</a>
     </div>
     <div class="posts-comments-attributes">
-        <span ng-mouseleave="showHideElement(post.id)">
+        <span ng-mouseleave="post.showLikesBalloon = false">
             <span>
                 <a class="likes-comments"
-                     ng-mouseenter="getPostTopLikes(post.id)"
-                     ng-click="showHideElement(post.id)" 
+                     ng-mouseenter="getPostTopLikes(post)"
+                     ng-click="post.showLikesBalloon = !post.showLikesBalloon"
                      href="">({{post.likesCount}})
                 </a>
             </span>
-            <div id="{{post.id}}" class="toplikes-balloon" 
+            <div ng-if="post.showLikesBalloon" class="toplikes-balloon"
             ng-include="'partials/top-likes.html'"></div>
         </span>
-        <a ng-if="!post.liked" href="" ng-click="likePost(postKey, post.id)">Like</a>
-        <a ng-if="post.liked" href="" ng-click="unlikePost(postKey, post.id)">Unlike</a>
+        <a ng-if="!post.liked" href="" ng-click="likePost(post)">Like</a>
+        <a ng-if="post.liked" href="" ng-click="unlikePost(post)">Unlike</a>
 
         <span><a href="" class="likes-comments">({{post.totalCommentsCount}})</a></span>
-        <a href="" ng-click="showCommentInput = !showCommentInput">Comment</a>
+        <a href="" ng-click="post.showCommentInput = !post.showCommentInput">Comment</a>
 
-        <div ng-if="showCommentInput">
-            <input type="text" ng-model="commentContent" placeholder="Your comment.."/>
-            <button id="newCommentInput" ng-click="addNewComment(postKey, post.id, commentContent)">Add</button>
+        <div ng-if="post.showCommentInput" class="add-comment-box">
+            <textarea id="add-comment-area" class="form-control" ng-model="commentContent" placeholder="Your Comment.."></textarea>
+            <a class="btn btn-primary btn-sm" ng-click="addNewComment(post, commentContent)">Add</a>
         </div>
     </div>
     <div ng-include="'partials/comments.html'"></div>
-    <a href="" 
-    id="{{post.id}}-show-comments"
-    ng-if="post.totalCommentsCount > 3"
-    ng-click="getCommentsByPostId(postKey, post.id)">
+    <a href="" ng-if="post.totalCommentsCount > 3 && !post.hideAppendComments"
+       ng-click="getCommentsByPostId(post)">
     Show all comments</a>
 </blockquote>

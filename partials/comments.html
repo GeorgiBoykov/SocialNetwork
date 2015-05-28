@@ -5,15 +5,15 @@
     </a>
     <span>{{comment.commentContent}}</span>
     <div class="post-attributes">
-        <span ng-mouseleave="showHideElement(comment.id)">
+        <span ng-mouseleave="comment.showTopLikesBalloon = false">
             <span>
                 <a class="likes-comments"
-                     ng-mouseenter="getCommentTopLikes(post.id, comment.id)"
-                     ng-click="showHideElement(comment.id)"
+                     ng-mouseenter="getCommentTopLikes(post, comment)"
+                     ng-click="comment.showTopLikesBalloon = !comment.showTopLikesBalloon"
                      href="">({{comment.likesCount}})
                 </a>
             </span>
-            <div id="{{comment.id}}" class="toplikes-balloon">
+            <div ng-if="comment.showTopLikesBalloon" class="toplikes-balloon">
                 <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
                     <a href="#/users/{{like.user.username}}/wall">
                         <img class="liker-photo" src="{{like.user.profileImageData}}" alt=""/>
@@ -24,8 +24,8 @@
             </div>
         </span>
 
-        <a ng-if="!comment.liked" href="" ng-click="likeComment(postKey, commentKey, post.id, comment.id)">Like</a>
-        <a ng-if="comment.liked" href="" ng-click="unlikeComment(postKey,commentKey, post.id, comment.id)">Unlike</a>
+        <a ng-if="!comment.liked" href="" ng-click="likeComment(post, comment, commentKey)">Like</a>
+        <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
 </div>

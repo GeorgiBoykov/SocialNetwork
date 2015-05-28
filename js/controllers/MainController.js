@@ -76,6 +76,7 @@ app.controller('MainController', function (
                     $scope.posts[newKey] = serverData[postKey];
                 }
                 $scope.username = username;
+                console.log(Object.keys($scope.posts)[0]-1);
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
             },
             function (serverError) {
@@ -136,36 +137,27 @@ app.controller('MainController', function (
     $scope.addNewPost = function (content, username) {
         postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                if ($routeParams.username === credentialsService.getUsername()) {
-                    document.getElementById('newPostInput').value = '';
-                } else {
-                    document.getElementById('newFriendPostInput').value = '';
-                }
-
-                RefreshData();
+                loadWallPage($routeParams.username)
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
-    $scope.editPost = function (postKey, postId, postContent) {
-        //console.log($scope.editPostInput)
-        postService.editPost(postId, postContent,{Authorization: credentialsService.getSessionToken()},
+    $scope.editPost = function (post, postContent) {
+        postService.editPost(post.id, postContent,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $scope.posts[postKey].postContent = serverData.content;
-                $scope.editPostInput = false;
-                 //console.log(!$scope.editPostInput)
-
+                post.postContent = serverData.content;
+                post.showEditPostInput = false;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
-    $scope.getPostTopLikes = function (postId) {
-        document.getElementById(postId).style.display = 'block';
-        postService.getPostTopLikes(postId,{Authorization: credentialsService.getSessionToken()},
+    $scope.getPostTopLikes = function (post) {
+        post.showLikesBalloon = !post.showLikesBalloon;
+        postService.getPostTopLikes(post.id, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.postTopLikes = serverData;
             },
@@ -174,52 +166,52 @@ app.controller('MainController', function (
             });
     };
 
-    $scope.likePost = function (postKey, postId) {
-        postService.likePost(postId,{Authorization: credentialsService.getSessionToken()},
+    $scope.likePost = function (post) {
+        postService.likePost(post.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $scope.posts[postKey].likesCount += 1;
-                $scope.posts[postKey].liked = true;
+                post.likesCount += 1;
+                post.liked = true;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
-    $scope.unlikePost = function (postKey, postId) {
-        postService.unlikePost(postId,{Authorization: credentialsService.getSessionToken()},
+    $scope.unlikePost = function (post) {
+        postService.unlikePost(post.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $scope.posts[postKey].likesCount -= 1;
-                $scope.posts[postKey].liked = false;
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    };
-
-    $scope.getCommentsByPostId = function (postKey, postId) {
-        commentService.getCommentsByPostId(postId,{Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.posts[postKey].comments = serverData;
-                document.getElementById(postId+'-show-comments').style.display = 'none';
-            },
-            function (serverError) {
-                notificationService.showErrorMessage(JSON.stringify(serverError));
-            });
-    }
-
-    $scope.addNewComment = function (postKey, postId, content) {
-        commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
-            function(serverData) {
-                $scope.showCommentInput = false;
-                $scope.posts[postKey].comments.unshift(serverData);
+                post.likesCount -= 1;
+                post.liked = false;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
-    $scope.getCommentTopLikes = function (postId, commentId) {
-        document.getElementById(commentId).style.display = 'block';
-        commentService.getCommentTopLikes(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+    $scope.getCommentsByPostId = function (post) {
+        commentService.getCommentsByPostId(post.id,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                post.comments = serverData;
+                post.hideAppendComments = true;
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.addNewComment = function (post, content) {
+        commentService.addNewComment(post.id, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                post.comments.unshift(serverData);
+                post.showCommentInput = false;
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.getCommentTopLikes = function (post, comment) {
+        comment.showTopLikesBalloon = !comment.showTopLikesBalloon;
+        commentService.getCommentTopLikes(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.commentTopLikes = serverData;
             },
@@ -228,44 +220,26 @@ app.controller('MainController', function (
             });
     };
 
-    $scope.likeComment = function (postKey,commentKey, postId, commentId) {
-        commentService.likeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+    $scope.likeComment = function (post, comment, commentKey) {
+        commentService.likeComment(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $scope.posts[postKey].comments[commentKey].likesCount += 1;
-                $scope.posts[postKey].comments[commentKey].liked = true;
+                post.comments[commentKey].likesCount += 1;
+                post.comments[commentKey].liked = true;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
-    $scope.unlikeComment = function (postKey,commentKey, postId, commentId) {
-        commentService.unlikeComment(postId, commentId,{Authorization: credentialsService.getSessionToken()},
+    $scope.unlikeComment = function (post, comment, commentKey) {
+        commentService.unlikeComment(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                $scope.posts[postKey].comments[commentKey].likesCount -= 1;
-                $scope.posts[postKey].comments[commentKey].liked = false;
+                post.comments[commentKey].likesCount -= 1;
+                post.comments[commentKey].liked = false;
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
 
-    // Utils
-    $scope.showHideElement = function (id) {
-        if (document.getElementById(id).style.display == 'none') 
-            {
-                document.getElementById(id).style.display = 'block';
-            } else{
-                document.getElementById(id).style.display = 'none';
-            };
-        
-    };
-
-    function RefreshData(startPostId, pageSize) {
-        if ($location.path() === '/news-feed') {
-            loadNewsFeedPage(startPostId, pageSize);
-        } else{
-            loadWallPage($routeParams.username)
-        }
-    }
 });
