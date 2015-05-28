@@ -6603,8 +6603,8 @@ button.close {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 .navbar-inverse .badge {
-    background-color: #fff;
-    color: #446e9b;
+    background-color: #ff000a;
+    color: #ffffff;
 }
 .navbar .badge {
     text-shadow: none;
