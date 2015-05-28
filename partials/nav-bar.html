@@ -13,19 +13,20 @@
             <ul class="nav navbar-nav" ng-if="credentialsService.isLogged()">
                 <li>
                     <a href="#/users/{{credentialsService.getUsername()}}/wall">
-                        <img src="{{credentialsService.getProfileImage()}}" width="27px" height="27px" alt="profileImage"/>
+                        <img ng-src="{{credentialsService.getProfileImage()}}" width="27px" height="27px" alt="profileImage"/>
                         <span>{{credentialsService.getName()}}</span>
                     </a>
                 </li>
                 <li>
                     <a href="" ng-click="showRequests = !showRequests">
-                        <img src="{{friendRequests.length > 0 ? 'img/friends-new-request.png': 'img/friends.png'}}" alt=""/>
+                        <img ng-src="img/friends.png" alt=""/>
+                        <span class="badge">{{friendRequests.length > 0 ? friendRequests.length : ''}}</span>
                     </a>
                     <div class="popup-list" ng-include="'partials/friend-requests.html'" ng-if="showRequests"></div>
                 </li>
                 <li>
                     <a href="#/profile-settings">
-                    <img src="img/settings.png" alt="friends"/>
+                    <img ng-src="img/settings.png" alt="friends"/>
                     </a>
                 </li>
             </ul>

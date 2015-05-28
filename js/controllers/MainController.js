@@ -15,12 +15,13 @@ app.controller('MainController', function (
 
     //Dynamic Scrolling
     window.onscroll = function(){
-        if (document.body.scrollHeight - window.scrollY  <= window.innerHeight){
+        if (document.body.scrollHeight - window.scrollY  <= window.innerHeight &&
+             $scope.posts[0]){
             var lastElementKey = (Object.keys($scope.posts)).length-1;
             if ($location.path() === '/news-feed') {
                 loadNewsFeedPage($scope.posts[lastElementKey].id,
                     _defaultPostsPerPage, lastElementKey);
-            } else{
+            } else if($location.path() === '/users/' + $routeParams.username + '/wall'){
                 loadWallPage($routeParams.username, $scope.posts[lastElementKey].id,
                     _defaultPostsPerPage, lastElementKey);
             }
@@ -34,9 +35,10 @@ app.controller('MainController', function (
         loadNewsFeedPage();
     }
     function loadNewsFeedPage(startPostId, pageSize, lastElementKey) {
+
+        FillProgressBar();
         if (!lastElementKey) {
             lastElementKey = -1;
-            $scope.posts = {};
         }
         profileService.getNewsFeed(startPostId, pageSize,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -44,8 +46,8 @@ app.controller('MainController', function (
                     var newKey = (Number(postKey) + Number(lastElementKey) + 1);
                     $scope.posts[newKey] = serverData[postKey];
                 }
-
                 loadMyTopFriendsList();
+                ClearProgressBar();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -65,9 +67,10 @@ app.controller('MainController', function (
     }
 
     function loadWallPage(username, startPostId, pageSize, lastElementKey) {
+
+        FillProgressBar();
         if (!lastElementKey) {
             lastElementKey = -1;
-            $scope.posts = {};
         }
         userService.getUserWall(username, startPostId, pageSize,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -76,8 +79,8 @@ app.controller('MainController', function (
                     $scope.posts[newKey] = serverData[postKey];
                 }
                 $scope.username = username;
-                console.log(Object.keys($scope.posts)[0]-1);
                 $scope.isCurrentUser = credentialsService.getUsername() === username;
+                ClearProgressBar();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -165,7 +168,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
-    
+
     $scope.getPostTopLikes = function (post) {
         post.showLikesBalloon = !post.showLikesBalloon;
         postService.getPostTopLikes(post.id, {Authorization: credentialsService.getSessionToken()},
@@ -257,5 +260,14 @@ app.controller('MainController', function (
         $(dialog).modal('show');
     };
 
+    function FillProgressBar() {
+        setTimeout(function () {
+            document.getElementById('posts-progress-bar').style.width = '100%';
+        }, 100);
+    }
+
+    function ClearProgressBar() {
+        document.getElementById('posts-progress-bar').style.width = '0%';
+    }
 
 });
