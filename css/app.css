@@ -68,7 +68,11 @@ header{
     width: 60%;
     margin-bottom: 3%;
 }
-
+.post-control{
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+}
 #add-post-button{
     margin-top: 3%;
 }

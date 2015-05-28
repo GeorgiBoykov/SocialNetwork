@@ -6,7 +6,6 @@ app.controller('MainController', function (
         $location.path('/');
         return 0;
     }
-
     $scope.posts = {};
     var _defaultPostsPerPage = 5;
     //Sort posts
@@ -45,6 +44,7 @@ app.controller('MainController', function (
                     var newKey = (Number(postKey) + Number(lastElementKey) + 1);
                     $scope.posts[newKey] = serverData[postKey];
                 }
+
                 loadMyTopFriendsList();
             },
             function (serverError) {
@@ -149,6 +149,20 @@ app.controller('MainController', function (
             });
     };
 
+    $scope.editPost = function (postKey, postId, postContent) {
+        //console.log($scope.editPostInput)
+        postService.editPost(postId, postContent,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.posts[postKey].postContent = serverData.content;
+                $scope.editPostInput = false;
+                 //console.log(!$scope.editPostInput)
+
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
     $scope.getPostTopLikes = function (postId) {
         document.getElementById(postId).style.display = 'block';
         postService.getPostTopLikes(postId,{Authorization: credentialsService.getSessionToken()},
@@ -180,6 +194,17 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
+    $scope.getCommentsByPostId = function (postKey, postId) {
+        commentService.getCommentsByPostId(postId,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.posts[postKey].comments = serverData;
+                document.getElementById(postId+'-show-comments').style.display = 'none';
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    }
 
     $scope.addNewComment = function (postKey, postId, content) {
         commentService.addNewComment(postId, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
@@ -226,8 +251,14 @@ app.controller('MainController', function (
     };
 
     // Utils
-    $scope.hideElement = function (id) {
-        document.getElementById(id).style.display = 'none';
+    $scope.showHideElement = function (id) {
+        if (document.getElementById(id).style.display == 'none') 
+            {
+                document.getElementById(id).style.display = 'block';
+            } else{
+                document.getElementById(id).style.display = 'none';
+            };
+        
     };
 
     function RefreshData(startPostId, pageSize) {

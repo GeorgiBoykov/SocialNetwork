@@ -1,17 +1,15 @@
-<div class="comment"
-     ng-repeat="commentKey in objectKeys(post.comments)"
-     ng-init="comment = post.comments[commentKey]">
+<div class="comment" ng-repeat="(commentKey, comment) in post.comments">
     <a href="#/users/{{comment.author.username}}/wall">
         <img src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
         <span>{{comment.author.name}}</span>
     </a>
     <span>{{comment.commentContent}}</span>
     <div class="post-attributes">
-        <span ng-mouseleave="hideElement(comment.id)">
+        <span ng-mouseleave="showHideElement(comment.id)">
             <span>
                 <a class="likes-comments"
                      ng-mouseenter="getCommentTopLikes(post.id, comment.id)"
-                     ng-click="hideElement(comment.id)"
+                     ng-click="showHideElement(comment.id)"
                      href="">({{comment.likesCount}})
                 </a>
             </span>

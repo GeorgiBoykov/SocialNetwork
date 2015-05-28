@@ -1,6 +1,13 @@
 app.factory('commentService', function ($http, baseUrl) {
     var serviceUrl =  baseUrl + 'posts';
 
+    function getCommentsByPostId(postId, headers, success, error) {
+        return $http.get(serviceUrl + '/' + postId + '/comments', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     function addNewComment(postId, commentData, headers, success, error) {
         return $http.post(serviceUrl + '/' + postId + '/comments', commentData, {headers: headers})
             .success(function (data, status, headers, config) {
@@ -30,6 +37,7 @@ app.factory('commentService', function ($http, baseUrl) {
     }
 
     return {
+        getCommentsByPostId: getCommentsByPostId,
         addNewComment: addNewComment,
         getCommentTopLikes: getCommentTopLikes,
         likeComment: likeComment,

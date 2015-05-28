@@ -1,4 +1,8 @@
 <blockquote class="post" ng-repeat="postKey in objectKeys(posts)" ng-init="post = posts[postKey]">
+    <div class="post-control">
+        <a href="" ng-click="editPostInput = !editPostInput">Edit</a>
+        <a href="" ng-click="deletePostInput = !deletePostInput">Delete</a>
+    </div>
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
         >
@@ -11,13 +15,18 @@
         </a>
         <span class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
-    <p>{{post.postContent}}</p>
+    <p ng-if="!editPostInput">{{post.postContent}}</p>
+    <div ng-if="editPostInput">
+    <textarea ng-model="newContent" class="form-control" 
+    ng-init="newContent=post.postContent">{{post.postContent}}</textarea>
+    <button ng-click="editPost(postKey, post.id, newContent)">Save</button>
+    </div>
     <div class="posts-comments-attributes">
-        <span ng-mouseleave="hideElement(post.id)">
+        <span ng-mouseleave="showHideElement(post.id)">
             <span>
                 <a class="likes-comments"
                      ng-mouseenter="getPostTopLikes(post.id)"
-                     ng-click="hideElement(post.id)" 
+                     ng-click="showHideElement(post.id)" 
                      href="">({{post.likesCount}})
                 </a>
             </span>
@@ -36,4 +45,9 @@
         </div>
     </div>
     <div ng-include="'partials/comments.html'"></div>
+    <a href="" 
+    id="{{post.id}}-show-comments"
+    ng-if="post.totalCommentsCount > 3"
+    ng-click="getCommentsByPostId(postKey, post.id)">
+    Show all comments</a>
 </blockquote>
