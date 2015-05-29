@@ -47,7 +47,6 @@ app.controller('MainController', function (
                     var newKey = (Number(postKey) + Number(lastElementKey) + 1);
                     $scope.posts[newKey] = serverData[postKey];
                 }
-                console.log($scope.posts)
                 ClearProgressBar();
             },
             function (serverError) {
@@ -141,7 +140,7 @@ app.controller('MainController', function (
     $scope.addNewPost = function (content, username) {
         postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
-                loadWallPage($routeParams.username)
+                $route.reload();
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
