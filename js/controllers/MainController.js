@@ -7,7 +7,7 @@ app.controller('MainController', function (
         return 0;
     }
     $scope.posts = {};
-    var _defaultPostsPerPage = 5;
+    var DEFAULT_POSTS_PER_PAGE = 5;
     //Sort posts
     $scope.objectKeys = function(obj){
         return Object.keys(obj);
@@ -20,10 +20,10 @@ app.controller('MainController', function (
             var lastElementKey = (Object.keys($scope.posts)).length-1;
             if ($location.path() === '/news-feed') {
                 loadNewsFeedPage($scope.posts[lastElementKey].id,
-                    _defaultPostsPerPage, lastElementKey);
+                    DEFAULT_POSTS_PER_PAGE, lastElementKey);
             } else if($location.path() === '/users/' + $routeParams.username + '/wall'){
                 loadWallPage($routeParams.username, $scope.posts[lastElementKey].id,
-                    _defaultPostsPerPage, lastElementKey);
+                    DEFAULT_POSTS_PER_PAGE, lastElementKey);
             }
         }
     };
@@ -33,6 +33,7 @@ app.controller('MainController', function (
     //Load News-feed page
     if ($location.path() === '/news-feed') {
         loadNewsFeedPage();
+        loadMyTopFriendsList();
     }
     function loadNewsFeedPage(startPostId, pageSize, lastElementKey) {
 
@@ -46,7 +47,7 @@ app.controller('MainController', function (
                     var newKey = (Number(postKey) + Number(lastElementKey) + 1);
                     $scope.posts[newKey] = serverData[postKey];
                 }
-                loadMyTopFriendsList();
+                console.log($scope.posts)
                 ClearProgressBar();
             },
             function (serverError) {
@@ -223,6 +224,27 @@ app.controller('MainController', function (
             });
     };
 
+    $scope.editComment = function (post, comment, commentContent) {
+        commentService.editComment(post.id, comment.id, commentContent,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                comment.commentContent = serverData.commentContent;
+                comment.showEditCommentInput = false;
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.deleteComment = function(post, comment, postKey, commentKey, dialog) {
+        $(dialog).modal('hide');
+        commentService.deleteComment(post.id,comment.id,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                delete $scope.posts[postKey].comments[commentKey];
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
     $scope.getCommentTopLikes = function (post, comment) {
         comment.showTopLikesBalloon = !comment.showTopLikesBalloon;
         commentService.getCommentTopLikes(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},

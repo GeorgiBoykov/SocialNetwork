@@ -15,6 +15,19 @@ app.factory('commentService', function ($http, baseUrl) {
             }).error(error);
     }
 
+    function editComment(postId, commentId, commentContent, headers,success, error) {
+        return $http.put(serviceUrl + '/' + postId + '/comments/'+commentId, {commentContent:commentContent}, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
+    function deleteComment(postId, commentId, headers,success, error) {
+        return $http.delete(serviceUrl + '/' + postId + '/comments/'+commentId, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
     function getCommentTopLikes(postId, commentId, headers, success, error) {
         return $http.get(serviceUrl + '/'+ postId+ '/comments/' + commentId + '/likes/preview', {headers: headers})
             .success(function (data, status, headers, config) {
@@ -39,6 +52,8 @@ app.factory('commentService', function ($http, baseUrl) {
     return {
         getCommentsByPostId: getCommentsByPostId,
         addNewComment: addNewComment,
+        editComment: editComment,
+        deleteComment: deleteComment,
         getCommentTopLikes: getCommentTopLikes,
         likeComment: likeComment,
         unlikeComment: unlikeComment

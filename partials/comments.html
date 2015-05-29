@@ -1,9 +1,20 @@
 <div class="comment" ng-repeat="(commentKey, comment) in post.comments">
-    <a href="#/users/{{comment.author.username}}/wall">
+    <div class="post-control" ng-if="comment.author.username == credentialsService.getUsername()">
+        <a href="" ng-click="comment.showEditCommentInput = !comment.showEditCommentInput">Edit</a>
+        <a href="" ng-click="showDialog('#confirm-comment-delete')">Delete</a>
+        <div ng-include="'partials/comment-dialog-window.html'"></div>
+    </div>
+    <a href="#/users/{{comment.author.username}}/wall"  ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false">
         <img ng-src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
         <span>{{comment.author.name}}</span>
     </a>
-    <span>{{comment.commentContent}}</span>
+    <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/user-info-Balloon.html'"></div>
+    <span ng-if="!comment.showEditCommentInput">{{comment.commentContent}}</span>
+    <div class="edit-post" ng-if="comment.showEditCommentInput">
+        <textarea ng-model="newCommentContent" class="form-control"
+        ng-init="newCommentContent=comment.commentContent">{{comment.commentContent}}</textarea>
+        <a class="btn btn-primary btn-xs" ng-click="editComment(post, comment, newCommentContent)">Save</a>
+    </div>
     <div class="post-attributes">
         <span ng-mouseleave="comment.showTopLikesBalloon = false">
             <span>

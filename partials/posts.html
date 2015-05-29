@@ -1,8 +1,8 @@
 <blockquote class="post" ng-repeat="postKey in objectKeys(posts)" ng-init="post = posts[postKey]">
     <div class="post-control" ng-if="post.author.username == credentialsService.getUsername()">
         <a href="" ng-click="post.showEditPostInput = !post.showEditPostInput">Edit</a>
-        <a href="" ng-click="showDialog('#confirm-delete')">Delete</a>
-        <div ng-include="'partials/dialog-window.html'"></div>
+        <a href="" ng-click="showDialog('#confirm-post-delete')">Delete</a>
+        <div ng-include="'partials/post-dialog-window.html'"></div>
     </div>
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
         <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
@@ -18,9 +18,9 @@
     </div>
     <p ng-if="!post.showEditPostInput">{{post.postContent}}</p>
     <div class="edit-post" ng-if="post.showEditPostInput">
-        <textarea ng-model="newContent" class="form-control"
-        ng-init="newContent=post.postContent">{{post.postContent}}</textarea>
-        <a class="btn btn-primary btn-xs" ng-click="editPost(post, newContent)">Save</a>
+        <textarea ng-model="newPostContent" class="form-control"
+        ng-init="newPostContent=post.postContent">{{post.postContent}}</textarea>
+        <a class="btn btn-primary btn-xs" ng-click="editPost(post, newPostContent)">Save</a>
     </div>
     <div class="posts-comments-attributes">
         <span ng-mouseleave="post.showLikesBalloon = false">
@@ -51,6 +51,6 @@
     Show all comments</a>
 </blockquote>
 
-<div class="progress progress-striped active">
+<div class="progress">
     <div id="posts-progress-bar" class="progress-bar" style="width: 0%"></div>
 </div>

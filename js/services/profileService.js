@@ -48,6 +48,15 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
                 success(data);
             }).error(error);
     }
+
+    function changePassword(data, headers, success, error) {
+        
+        return $http.put(serviceUrl + '/ChangePassword', data, {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
+
     function getMyTopFriendsList(headers, success, error) {
         return $http.get(serviceUrl +'/friends/preview', {headers: headers})
             .success(function (data, status, headers, config) {
@@ -87,6 +96,7 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
         getNewsFeed : getNewsFeed,
         getProfile : getProfile,
         editProfile : editProfile,
+        changePassword: changePassword,
         getMyFriendsList: getMyFriendsList,
         getMyTopFriendsList: getMyTopFriendsList,
         getFriendRequests: getFriendRequests,

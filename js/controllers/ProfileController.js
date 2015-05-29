@@ -10,6 +10,18 @@ app.controller('ProfileController', function (
         profileService.editProfile(data, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 credentialsService.refreshProfileData();
+                notificationService.showInfoMessage('Profile updated successufly')
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
+
+    $scope.changePassword = function (data) {
+        profileService.changePassword(data, {Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                credentialsService.refreshProfileData();
+                notificationService.showInfoMessage('Password changed successufly')
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));

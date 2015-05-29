@@ -29,6 +29,10 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/profile-settings.html',
             controller: 'ProfileController'
         })
+        .when('/change-password', {
+            templateUrl: 'partials/change-password.html',
+            controller: 'ProfileController'
+        })
         .otherwise({
             redirectTo: '/'
         })
