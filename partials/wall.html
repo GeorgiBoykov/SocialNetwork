@@ -21,6 +21,9 @@
             <textarea id="newFriendPostInput" class="form-control" ng-model="newFriendPost" placeholder="Post on {{userData.name}}`s wall..."></textarea>
             <button id="add-friend-post-button" class="btn btn-primary" ng-click="addNewPost(newFriendPost, userData.username)">Post</button>
         </div>
+        <div class="top-friends-mobile">
+            <a href="#/users/{{userData.username}}/friends" ng-include="'partials/top-friends.html'"></a>
+        </div>
         <div class="posts" ng-include="'partials/posts.html'"></div>
     </div>
     <div class="top-friends" ng-include="'partials/top-friends.html'"></div>

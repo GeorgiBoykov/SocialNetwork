@@ -1,4 +1,4 @@
-<h3>Friends - <a href="#/users/{{username}}/friends">{{topFriends.totalCount}} total</a></h3>
+<h4>Friends - <a href="#/users/{{username}}/friends">{{topFriends.totalCount}} total</a></h4>
 <p ng-if="friendsError">{{friendsError.message}}</p>
 <div class="top-friend-bar" ng-repeat="friend in topFriends.friends">
     <a href="#/users/{{friend.username}}/wall">
