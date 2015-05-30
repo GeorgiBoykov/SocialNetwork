@@ -6,5 +6,8 @@
 	<span class="post-author-name">{{comment.author.name}}</span>
 	</a>
 	<p>{{comment.author.gender==0 ? 'male' : 'female'}}</p>
-	<a class="btn btn-primary btn-sm" ng-click="addFriend(comment.author.username)">Add Friend</a>
+	<a ng-if="comment.author.username != credentialsService.getUsername()"
+	   class="btn btn-primary btn-sm"
+	   ng-click="addFriend(comment.author.username)">Add Friend
+	</a>
 </div>
