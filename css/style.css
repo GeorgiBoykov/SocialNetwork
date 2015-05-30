@@ -189,6 +189,11 @@ header{
 .top-likers{
     min-height: 80px;
 }
+
+.modal-body > .liker{
+    font-size: 12px;
+    margin: 10px;
+}
 .liker{
     display: inline-block;
     width: 42px;
