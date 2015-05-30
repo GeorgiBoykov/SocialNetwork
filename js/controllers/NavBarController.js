@@ -9,11 +9,11 @@ app.controller('NavBarController', function (
         credentialsService.refreshProfileData();
     }
 
-     //setInterval(function () {
-     //    if (credentialsService.isLogged()) {
-     //        getFriendRequests();
-     //    }
-     //}, 3000);
+     setInterval(function () {
+         if (credentialsService.isLogged()) {
+             getFriendRequests();
+         }
+     }, 3000);
     function getFriendRequests() {
         profileService.getFriendRequests({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -21,6 +21,11 @@ app.controller('NavBarController', function (
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
+                if (serverError.message == 'Session token expired or not valid.') {
+                    $location.path('/');
+                    credentialsService.clearCredentials();
+                    return 0;
+                }
             });
     }
 

@@ -30,5 +30,5 @@
         </div>
         <div class="posts" ng-include="'partials/posts.html'"></div>
     </div>
-    <div ng-if="userData.isFriend" class="top-friends" ng-include="'partials/top-friends.html'"></div>
+    <div ng-if="userData.isFriend || userData.username == credentialsService.getUsername()" class="top-friends" ng-include="'partials/top-friends.html'"></div>
 </div>

@@ -51,6 +51,11 @@ app.controller('MainController', function (
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
+                if (serverError.message == 'Session token expired or not valid.') {
+                    $location.path('/');
+                    credentialsService.clearCredentials();
+                    return 0;
+                }
             });
     }
     //--end
@@ -82,6 +87,11 @@ app.controller('MainController', function (
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
+                if (serverError.message == 'Session token expired or not valid.') {
+                    $location.path('/');
+                    credentialsService.clearCredentials();
+                    return 0;
+                }
             });
     }
 
