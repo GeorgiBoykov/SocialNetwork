@@ -6,11 +6,19 @@
                 <h4 class="modal-title">Confirm deletion</h4>
             </div>
             <div class="modal-body">
-                <p>Please confirm delete of the selected comment</p>
+                <p>Please confirm delete of the selected comment:</p>
+                <p style="text-decoration: line-through">{{commentToDelete.comment.commentContent}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" ng-click="deleteComment(post, comment, postKey, commentKey, '#confirm-comment-delete')" class="btn btn-primary">Delete</button>
+                <button type="button"
+                        ng-click="deleteComment(
+                        commentToDelete.post,
+                        commentToDelete.comment,
+                        commentToDelete.postKey,
+                        commentToDelete.commentKey,
+                        '#confirm-comment-delete')"
+                        class="btn btn-primary">Delete</button>
             </div>
         </div>
     </div>

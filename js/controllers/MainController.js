@@ -171,8 +171,12 @@ app.controller('MainController', function (
             });
     };
 
-    $scope.deletePost = function(post, postKey, dialog) {
-        $(dialog).modal('hide');
+    $scope.openDeletePostDialog = function (post, postKey, dialog) {
+        $scope.showDialog(dialog);
+        $scope.postToDelete = {post: post, postKey: postKey};
+    };
+    $scope.deletePost = function (post, postKey, dialog) {
+        $scope.hideDialog(dialog);
         postService.deletePost(post.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 delete $scope.posts[postKey];
@@ -259,9 +263,13 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
-
+    $scope.openDeleteCommentDialog = function (post, comment, postKey, commentKey, dialog) {
+        $scope.showDialog(dialog);
+        $scope.commentToDelete = {post: post, comment: comment, postKey: postKey, commentKey:commentKey};
+    };
     $scope.deleteComment = function(post, comment, postKey, commentKey, dialog) {
-        $(dialog).modal('hide');
+        $scope.hideDialog(dialog);
+
         commentService.deleteComment(post.id,comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 delete $scope.posts[postKey].comments[commentKey];
