@@ -7,6 +7,8 @@
             </div>
             <div class="modal-body">
                 <p>Please confirm delete of the selected comment:</p>
+                <img class="comment-author-img"
+                     ng-src="{{commentToDelete.comment.author.profileImageData}}" alt=""/>
                 <p style="text-decoration: line-through">{{commentToDelete.comment.commentContent}}</p>
             </div>
             <div class="modal-footer">
