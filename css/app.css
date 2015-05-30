@@ -170,6 +170,11 @@ header{
     font-size: 10px;
     box-shadow: 5px 5px 5px #888888;
 }
+.balloon-user-img{
+    vertical-align: top;
+    width: 80px;
+    height: 80px;
+}
 .user-info-balloon-attr{
     width: 100px;
     display: inline-block;
@@ -253,7 +258,12 @@ header{
 #add-comment-area{
     margin-bottom: 5px;
 }
-
+.mobile-only{
+    display: none;
+}
+.comment-author-box{
+    display: inline-block;
+}
 @media (max-width: 950px) {
     #wrapper{
         width: 90%;
@@ -297,5 +307,15 @@ header{
     }
     .top-friend-bar{
         display: inline-block;
+    }
+    .all-friends{
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 767px){
+    .mobile-only{
+        display: inline;
     }
 }

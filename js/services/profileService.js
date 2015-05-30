@@ -21,7 +21,7 @@ app.factory('profileService', function ($http, $q, baseUrl, credentialsService) 
             }).error(error);
     }
 
-    function editProfile(data, headers,success, error) {
+    function editProfile(data, headers, success, error) {
         var profileData = {};
 
         if (data.name) {

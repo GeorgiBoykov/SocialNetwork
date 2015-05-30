@@ -1,6 +1,10 @@
-<img ng-src="{{comment.author.profileImageData}}" class="post-author-img" alt=""/>
+<a href="#/users/{{comment.author.username}}/wall">
+	<img ng-src="{{comment.author.profileImageData}}" class="balloon-user-img" alt=""/>
+</a>
 <div class="user-info-balloon-attr">
-	<span class="post-author-name">{{post.author.name}}</span>
-	<span>{{comment.author.gender==0 ? 'male' : 'female'}}</span>
+	<a href="#/users/{{comment.author.username}}/wall">
+	<span class="post-author-name">{{comment.author.name}}</span>
+	</a>
+	<p>{{comment.author.gender==0 ? 'male' : 'female'}}</p>
 	<a class="btn btn-primary btn-sm" ng-click="addFriend(comment.author.username)">Add Friend</a>
 </div>

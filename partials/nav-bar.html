@@ -21,18 +21,21 @@
                     <a href="" ng-click="data.showRequests = !data.showRequests">
                         <img ng-src="img/friends.png" alt=""/>
                         <span class="badge">{{friendRequests.length > 0 ? friendRequests.length : ''}}</span>
+                        <span class="mobile-only"> Friend Requests</span>
                     </a>
                     <div class="popup-list" ng-mouseleave="data.showRequests = false" ng-include="'partials/friend-requests.html'" ng-if="data.showRequests"></div>
                 </li>
                 <li>
                     <a href="#/profile-settings">
                     <img ng-src="img/settings.png" alt="settings"/>
+                    <span class="mobile-only"> Settings</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#/change-password">
                     <img ng-src="img/key.png" alt="password"/>
+                    <span class="mobile-only"> Change Password</span>
                     </a>
                 </li>
             </ul>

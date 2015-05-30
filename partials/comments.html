@@ -4,11 +4,13 @@
         <a href="" ng-click="showDialog('#confirm-comment-delete')">Delete</a>
         <div ng-include="'partials/comment-dialog-window.html'"></div>
     </div>
-    <a href="#/users/{{comment.author.username}}/wall"  ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false">
-        <img ng-src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
-        <span>{{comment.author.name}}</span>
-    </a>
-    <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/user-info-Balloon.html'"></div>
+    <div class="comment-author-box" ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false" ng-click="comment.showUserBalloon = !comment.showUserBalloon">
+        <a href="">
+            <img ng-src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
+            <span>{{comment.author.name}}</span>
+        </a>
+        <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/user-info-balloon.html'"></div>
+    </div>
     <span ng-if="!comment.showEditCommentInput">{{comment.commentContent}}</span>
     <div class="edit-post" ng-if="comment.showEditCommentInput">
         <textarea ng-model="newCommentContent" class="form-control"
