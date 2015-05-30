@@ -186,7 +186,9 @@ header{
     width: 100px;
     display: inline-block;
 }
-
+.top-likers{
+    min-height: 80px;
+}
 .liker{
     display: inline-block;
     width: 42px;

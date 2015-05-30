@@ -1,8 +1,10 @@
-<div class="liker" ng-repeat="like in postTopLikes.postLikes">
-	<a href="#/users/{{like.user.username}}/wall">
-	    <img class="liker-photo" ng-src="{{like.user.profileImageData || 'img/anonymous.png'}}" alt=""/>
-	    <p>{{like.user.name}}</p>
-    </a>
+<div class="top-likers">
+    <div class="liker" ng-repeat="like in postTopLikes.postLikes">
+        <a href="#/users/{{like.user.username}}/wall">
+            <img class="liker-photo" ng-src="{{like.user.profileImageData || 'img/anonymous.png'}}" alt=""/>
+            <p>{{like.user.name}}</p>
+        </a>
+    </div>
 </div>
 <p ng-if="postTopLikes.totalLikeCount == 0">No Likes...</p>
 <a ng-if="postTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"

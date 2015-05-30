@@ -27,16 +27,17 @@
                 </a>
             </span>
             <div ng-if="comment.showTopLikesBalloon" class="toplikes-balloon">
-                <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
-                    <a href="#/users/{{like.user.username}}/wall">
-                        <img class="liker-photo" ng-src="{{like.user.profileImageData  || 'img/anonymous.png'}}" alt=""/>
-                        <p>{{like.user.name}}</p>
-                    </a>
+                <div class="top-likers">
+                    <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
+                        <a href="#/users/{{like.user.username}}/wall">
+                            <img class="liker-photo" ng-src="{{like.user.profileImageData  || 'img/anonymous.png'}}" alt=""/>
+                            <p>{{like.user.name}}</p>
+                        </a>
+                    </div>
                 </div>
                 <p ng-if="commentTopLikes.totalLikeCount == 0">No Likes...</p>
                 <a ng-if="commentTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"
                    ng-click="getCommentAllLikes(post, comment, '#comment-likes-dialog-window')">Show all</a>
-
             </div>
         </span>
 
