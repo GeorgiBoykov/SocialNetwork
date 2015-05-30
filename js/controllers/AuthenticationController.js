@@ -26,7 +26,7 @@ app.controller('AuthenticationController', function (
         userService.Register(registerData,
             function(serverData) {
                 notificationService.showInfoMessage('Registration Successful.');
-                credentialsService.setSessionToken(serverData['access_token']);
+                credentialsService.setSessionToken(serverData['access_token'], serverData['token_type']);
                 credentialsService.setUsername(serverData['userName']);
                 credentialsService.refreshProfileData();
                 $location.path('/news-feed');
@@ -43,7 +43,7 @@ app.controller('AuthenticationController', function (
         userService.Login(loginData,
             function(serverData) {
                 notificationService.showInfoMessage('Login Successful.');
-                credentialsService.setSessionToken(serverData['access_token']);
+                credentialsService.setSessionToken(serverData['access_token'], serverData['token_type']);
                 credentialsService.setUsername(serverData['userName']);
                 credentialsService.refreshProfileData();
                 $location.path('/news-feed');

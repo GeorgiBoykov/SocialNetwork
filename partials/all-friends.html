@@ -8,7 +8,7 @@
 <div class="all-friends">
     <div class="friend-bar-all" ng-repeat="friend in friends | filter: filterFriends">
         <a href="#/users/{{friend.username}}/wall">
-            <img ng-src="{{friend.profileImageData  || 'img/anonymous.png'}}" alt="image"/>
+            <img class="friend-bar-all-img" ng-src="{{friend.profileImageData  || 'img/anonymous.png'}}" alt="image"/>
             <span class="friend-bar-all-name">{{friend.name}}</span>
         </a>
     </div>

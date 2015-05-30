@@ -49,6 +49,10 @@ header{
     border: 1px solid #446D9A;
     border-radius: 2px;
 }
+.friend-bar-all-img{
+    width: 100px;
+    height: 100px;
+}
 .filter-friends-bar{
     width: 30%;
     margin: 0 auto;

@@ -4,8 +4,8 @@ app.factory('credentialsService', function ($http, baseUrl) {
         return sessionStorage.getItem('sessionToken');
     }
 
-    function setSessionToken(sessionToken) {
-        sessionStorage.setItem('sessionToken', 'Bearer ' + sessionToken);
+    function setSessionToken(sessionToken, type) {
+        sessionStorage.setItem('sessionToken', type + ' ' + sessionToken);
     }
 
     function getUsername() {
