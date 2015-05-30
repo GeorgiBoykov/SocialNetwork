@@ -34,6 +34,9 @@
                     </a>
                 </div>
                 <p ng-if="commentTopLikes.totalLikeCount == 0">No Likes...</p>
+                <a ng-if="commentTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"
+                   ng-click="getCommentAllLikes(post, comment, '#comment-likes-dialog-window')">Show all</a>
+
             </div>
         </span>
 

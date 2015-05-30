@@ -192,6 +192,16 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+    $scope.getPostAllLikes = function (post, dialog) {
+        $scope.showDialog('#post-likes-dialog-window');
+        postService.getPostAllLikes(post.id, {Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.postAllLikes = serverData;
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
 
     $scope.likePost = function (post) {
         postService.likePost(post.id,{Authorization: credentialsService.getSessionToken()},
@@ -270,6 +280,16 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+    $scope.getCommentAllLikes = function (post, comment, dialog) {
+        $scope.showDialog(dialog);
+        commentService.getCommentAllLikes(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
+            function(serverData) {
+                $scope.commentAllLikes = serverData;
+            },
+            function (serverError) {
+                notificationService.showErrorMessage(JSON.stringify(serverError));
+            });
+    };
 
     $scope.likeComment = function (post, comment, commentKey) {
         commentService.likeComment(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
@@ -296,6 +316,9 @@ app.controller('MainController', function (
     //Utilities
     $scope.showDialog = function (dialog) {
         $(dialog).modal('show');
+    };
+    $scope.hideDialog = function (dialog) {
+        $(dialog).modal('hide');
     };
 
     function FillProgressBar() {

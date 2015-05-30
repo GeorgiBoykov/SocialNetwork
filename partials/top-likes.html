@@ -5,3 +5,5 @@
     </a>
 </div>
 <p ng-if="postTopLikes.totalLikeCount == 0">No Likes...</p>
+<a ng-if="postTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"
+   ng-click="getPostAllLikes(post, '#post-likes-dialog-window')">Show all</a>

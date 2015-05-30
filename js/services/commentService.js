@@ -34,6 +34,12 @@ app.factory('commentService', function ($http, baseUrl) {
                 success(data);
             }).error(error);
     }
+    function getCommentAllLikes(postId, commentId, headers, success, error) {
+        return $http.get(serviceUrl + '/'+ postId+ '/comments/' + commentId + '/likes', {headers: headers})
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(error);
+    }
 
     function likeComment(postId, commentId, headers, success, error) {
         return $http.post(serviceUrl + '/'+ postId+ '/comments/' + commentId + '/likes', {}, {headers: headers})
@@ -55,6 +61,7 @@ app.factory('commentService', function ($http, baseUrl) {
         editComment: editComment,
         deleteComment: deleteComment,
         getCommentTopLikes: getCommentTopLikes,
+        getCommentAllLikes: getCommentAllLikes,
         likeComment: likeComment,
         unlikeComment: unlikeComment
     }

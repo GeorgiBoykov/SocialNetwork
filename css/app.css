@@ -162,6 +162,9 @@ header{
     font-size: 10px;
     box-shadow: 5px 5px 5px #888888;
 }
+.all-likes-btn{
+    display: block;
+}
 .user-info-balloon{
     position: absolute;
     width: 200px;

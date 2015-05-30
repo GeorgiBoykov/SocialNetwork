@@ -1,0 +1,23 @@
+<div class="modal" id="comment-likes-dialog-window">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">People who like this comment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="liker" ng-repeat="like in commentAllLikes">
+                    <a href="#/users/{{like.user.username}}/wall" ng-click="hideDialog('#comment-likes-dialog-window')">
+                        <img class="liker-photo" ng-src="{{like.user.profileImageData || 'img/anonymous.png'}}" alt=""/>
+                        <span>{{like.user.name}}</span>
+                    </a>
+                </div>
+                <p ng-if="commentAllLikes.totalLikeCount == 0">No Likes...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

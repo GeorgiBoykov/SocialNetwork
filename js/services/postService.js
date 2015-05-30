@@ -29,6 +29,13 @@ app.factory('postService', function ($http, baseUrl) {
 			}).error(error);
 	}
 
+	function getPostAllLikes(postId, headers, success, error) {
+		return $http.get(serviceUrl + '/'+ postId+ '/likes', {headers: headers})
+			.success(function (data, status, headers, config) {
+				success(data);
+			}).error(error);
+	}
+
 	function likePost(postId, headers, success, error) {
 		return $http.post(serviceUrl + '/'+ postId+ '/likes', {}, {headers: headers})
 			.success(function (data, status, headers, config) {
@@ -48,6 +55,7 @@ app.factory('postService', function ($http, baseUrl) {
 		editPost: editPost,
 		deletePost: deletePost,
 		getPostTopLikes: getPostTopLikes,
+		getPostAllLikes: getPostAllLikes,
 		likePost : likePost,
 		unlikePost: unlikePost
 	}
