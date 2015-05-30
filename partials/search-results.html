@@ -1,6 +1,6 @@
 <div class="user" ng-repeat="searchResult in searchResults">
     <a href="#/users/{{searchResult.username}}/wall" ng-click="clearSearchBox()">
-        <img ng-src="{{searchResult.profileImageData}}" width="64px" height="64px" alt=""/>
+        <img ng-src="{{searchResult.profileImageData || 'img/anonymous.png'}}" width="64px" height="64px" alt=""/>
         <span>{{searchResult.name}}</span>
     </a>
 </div>

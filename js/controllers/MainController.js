@@ -61,8 +61,6 @@ app.controller('MainController', function (
         loadUserData($routeParams.username);
         if (credentialsService.getUsername() === $routeParams.username) {
             loadMyTopFriendsList();
-        } else {
-            loadTopFriendsList($routeParams.username);
         }
     }
 
@@ -91,6 +89,9 @@ app.controller('MainController', function (
         userService.getUserProfile(username, {Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.userData = serverData;
+                if (serverData.isFriend == true) {
+                    loadTopFriendsList($routeParams.username);
+                }
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -106,8 +107,7 @@ app.controller('MainController', function (
                 $scope.username = username;
             },
             function (serverError) {
-                //notificationService.showErrorMessage(JSON.stringify(serverError));
-                $scope.friendsError = serverError;
+                notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     }
 
@@ -138,6 +138,9 @@ app.controller('MainController', function (
     };
 
     $scope.addNewPost = function (content, username) {
+        if (content.length < 2) {
+            return  notificationService.showErrorMessage('Post length should be at least 2 characters long...');
+        }
         postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $route.reload();
@@ -213,6 +216,9 @@ app.controller('MainController', function (
     };
 
     $scope.addNewComment = function (post, content) {
+        if (content.length < 2) {
+            return  notificationService.showErrorMessage('Comment length should be at least 2 characters long...');
+        }
         commentService.addNewComment(post.id, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 post.comments.unshift(serverData);
@@ -277,6 +283,7 @@ app.controller('MainController', function (
             });
     };
 
+    //Utilities
     $scope.showDialog = function (dialog) {
         $(dialog).modal('show');
     };

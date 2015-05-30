@@ -11,7 +11,7 @@
     </div>
     <div class="post-author">
         <a href="#/users/{{post.author.username}}/wall">
-            <img ng-src="{{post.author.profileImageData}}" class="post-author-img" alt=""/>
+            <img ng-src="{{post.author.profileImageData || 'img/anonymous.png'}}" class="post-author-img" alt=""/>
             <p class="post-author-name">{{post.author.name}}</p>
         </a>
         <span class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
@@ -34,11 +34,20 @@
             <div ng-if="post.showLikesBalloon" class="toplikes-balloon"
             ng-include="'partials/top-likes.html'"></div>
         </span>
-        <a ng-if="!post.liked" href="" ng-click="likePost(post)">Like</a>
+        <a ng-if="!post.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername())"
+           href="" ng-click="likePost(post)">Like</a>
+        <span ng-if="!post.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername()"
+           >Likes</span>
         <a ng-if="post.liked" href="" ng-click="unlikePost(post)">Unlike</a>
 
-        <span><a href="" class="likes-comments">({{post.totalCommentsCount}})</a></span>
-        <a href="" ng-click="post.showCommentInput = !post.showCommentInput">Comment</a>
+        <span class="likes-comments">({{post.totalCommentsCount}})</span>
+        <a href=""
+           ng-if="post.author.isFriend || post.author.username == credentialsService.getUsername()"
+           ng-click="post.showCommentInput = !post.showCommentInput">Comment
+        </a>
+        <span ng-if="!post.author.isFriend && post.author.username != credentialsService.getUsername()">
+            Comments
+        </span>
 
         <div ng-if="post.showCommentInput" class="add-comment-box">
             <textarea id="add-comment-area" class="form-control" ng-model="commentContent" placeholder="Your Comment.."></textarea>

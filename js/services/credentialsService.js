@@ -1,4 +1,4 @@
-app.factory('credentialsService', function ($http, baseUrl, anonymousImage) {
+app.factory('credentialsService', function ($http, baseUrl) {
 
     function getSessionToken() {
         return sessionStorage.getItem('sessionToken');
@@ -39,7 +39,7 @@ app.factory('credentialsService', function ($http, baseUrl, anonymousImage) {
             }
         }
 
-        return anonymousImage;
+        return null;
     }
 
     function setProfileImage(profileImage) {

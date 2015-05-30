@@ -36,14 +36,18 @@
                     <div class="col-lg-10">
                         <label for="profileImageData">Profile Image</label>
                         <input type="file" fileread="profileImageData" id="profileImageData"/>
-                        <img ng-src="{{profileImageData || credentialsService.getProfileImage()}}" id="edit-profile-image" alt="profile"/>
+                        <p>limit: 128kb</p>
+                        <img ng-src="{{profileImageData.src || credentialsService.getProfileImage()}}" id="edit-profile-image" alt="profile"/>
+                        <p ng-if="profileImageData">size: {{(profileImageData.size / 1024).toFixed(2)}}kb</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10">
                         <label for="coverImageData">Cover Image</label>
                         <input type="file" fileread="coverImageData" id="coverImageData"/>
-                        <img ng-src="{{coverImageData || credentialsService.getCoverImage()}}" id="edit-cover-image" alt="cover"/>
+                        <p>limit: 1024kb</p>
+                        <img ng-src="{{coverImageData.src || credentialsService.getCoverImage() }}" id="edit-cover-image" alt="cover"/>
+                        <p ng-if="coverImageData">size: {{(coverImageData.size / 1024).toFixed(2)}}kb</p>
                     </div>
                 </div>
                 <div class="form-group">

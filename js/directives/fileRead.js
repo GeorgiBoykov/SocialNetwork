@@ -11,7 +11,10 @@ app.directive("fileread", ['notificationService',function (notificationService) 
                     var reader = new FileReader();
                     reader.onload = function (loadEvent) {
                         scope.$apply(function () {
-                            scope.fileread = loadEvent.target.result;
+                            scope.fileread = {
+                                src: loadEvent.target.result,
+                                size: file.size
+                            }
                         });
                     };
                     reader.readAsDataURL(file);

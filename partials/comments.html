@@ -6,7 +6,7 @@
     </div>
     <div class="comment-author-box" ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false" ng-click="comment.showUserBalloon = !comment.showUserBalloon">
         <a href="">
-            <img ng-src="{{comment.author.profileImageData}}" class="comment-author-img" alt=""/>
+            <img ng-src="{{comment.author.profileImageData || 'img/anonymous.png'}}" class="comment-author-img" alt=""/>
             <span>{{comment.author.name}}</span>
         </a>
         <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/user-info-balloon.html'"></div>
@@ -29,7 +29,7 @@
             <div ng-if="comment.showTopLikesBalloon" class="toplikes-balloon">
                 <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
                     <a href="#/users/{{like.user.username}}/wall">
-                        <img class="liker-photo" ng-src="{{like.user.profileImageData}}" alt=""/>
+                        <img class="liker-photo" ng-src="{{like.user.profileImageData  || 'img/anonymous.png'}}" alt=""/>
                         <p>{{like.user.name}}</p>
                     </a>
                 </div>
@@ -37,7 +37,12 @@
             </div>
         </span>
 
-        <a ng-if="!comment.liked" href="" ng-click="likeComment(post, comment, commentKey)">Like</a>
+        <a ng-if="!comment.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername())"
+           href="" ng-click="likeComment(post, comment, commentKey)">Like
+        </a>
+        <span ng-if="!comment.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername()">
+            Likes
+        </span>
         <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>

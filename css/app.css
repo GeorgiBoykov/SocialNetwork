@@ -264,6 +264,11 @@ header{
 .comment-author-box{
     display: inline-block;
 }
+
+.auth{
+    display: inline-block;
+    width: 80%;
+}
 @media (max-width: 950px) {
     #wrapper{
         width: 90%;

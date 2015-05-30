@@ -1,5 +1,5 @@
 <a href="#/users/{{comment.author.username}}/wall">
-	<img ng-src="{{comment.author.profileImageData}}" class="balloon-user-img" alt=""/>
+	<img ng-src="{{comment.author.profileImageData || 'img/anonymous.png'}}" class="balloon-user-img" alt=""/>
 </a>
 <div class="user-info-balloon-attr">
 	<a href="#/users/{{comment.author.username}}/wall">
