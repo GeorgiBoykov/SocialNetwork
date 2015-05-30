@@ -7,12 +7,14 @@ app.factory('userService', function ($http, baseUrl) {
                 success(data);
             }).error(error);
     }
+
     function Login(loginData, success, error) {
         return $http.post(serviceUrl + '/Login', loginData)
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);
     }
+
     function Logout(headers, success, error) {
         return $http.post(serviceUrl + '/Logout',{}, {headers: headers})
             .success(function (data, status, headers, config) {

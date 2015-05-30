@@ -1,0 +1,335 @@
+header{
+    margin-bottom: 100px;
+}
+#wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header-title{
+    border: 3px solid #426C98;
+    border-radius: 5px;
+    padding: 2%;
+    margin-bottom: 3%;
+}
+.posts-wrapper{
+    display: inline-block;
+    float: left;
+    width: 65%;
+}
+
+.top-friends{
+    display: inline-block;
+    float: right;
+    border: 1px solid #446D9A;
+    border-radius: 2px;
+    width: 30%;
+    padding: 5px;
+    height: auto;
+}
+.top-friend-image{
+    width: 80px;
+    height: 80px;
+}
+
+.top-friend-bar{
+    display: inline-block;
+    vertical-align: middle;
+    width: 85px;
+    height: 120px;
+    font-size: 12px;
+    margin: 3px;
+}
+.top-friends-mobile{
+    display: none;
+}
+.all-friends{
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid #446D9A;
+    border-radius: 2px;
+}
+.friend-bar-all-img{
+    width: 100px;
+    height: 100px;
+}
+.filter-friends-bar{
+    width: 30%;
+    margin: 0 auto;
+}
+.friend-bar-all{
+    width: 45%;
+    margin: 5px;
+    display: inline-block;
+}
+.posts-comments-attributes{
+    font-size: 14px;
+}
+
+.post-author-img{
+    width: 64px;
+    height: 64px;
+}
+
+.add-post{
+    width: 60%;
+    margin-bottom: 3%;
+}
+.post-control{
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+}
+#add-post-button{
+    margin-top: 3%;
+}
+#add-friend-post-button{
+    margin-top: 3%;
+}
+
+.wall-profile-image{
+    width: 160px;
+    height: 160px;
+    border: 4px solid white;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #426C98;
+}
+.wall-profile{
+    display: inline-block;
+    float: left;
+}
+
+.wall-owner{
+    border: 1px solid #426C98;
+    border-radius: 2px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fafafa;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10%;
+    padding: 10px;
+}
+
+.wall-attributes{
+    height: 160px;
+    margin-top: 150px;
+}
+
+.is-friend{
+    display: inline-block;
+    float: right;
+    text-align: right;
+    margin-top: 80px;
+}
+.pending-request{
+    display: inline-block;
+    float: right;
+    text-align: right;
+    margin-top: 80px;
+}
+#add-friend-btn{
+    margin-right: 2%;
+}
+#is-friend{
+    margin-right: 2%;
+}
+
+.popup-list{
+    position: absolute;
+    margin-top: 5px;
+    width: 300px;
+    min-height: 100px;
+    max-height: 300px;
+    border: 2px solid #426C98;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 999;
+    overflow-y: scroll;
+    box-shadow: 5px 5px 5px #888888;
+}
+.toplikes-balloon{
+    position: absolute;
+    width: 150px;
+    min-height: 100px;
+    border: 2px solid #426C98;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 999;
+    font-size: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+.all-likes-btn{
+    display: block;
+}
+.user-info-balloon{
+    position: absolute;
+    width: 200px;
+    padding: 5px;
+    min-height: 100px;
+    border: 2px solid #426C98;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 999;
+    font-size: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+.balloon-user-img{
+    vertical-align: top;
+    width: 80px;
+    height: 80px;
+}
+.user-info-balloon-attr{
+    width: 100px;
+    display: inline-block;
+}
+.top-likers{
+    min-height: 80px;
+}
+.liker{
+    display: inline-block;
+    width: 42px;
+    height: 70px;
+    vertical-align: middle;
+    margin: 3px;
+}
+.liker-photo{
+    width: 42px;
+    height: 42px;
+}
+.user{
+    margin: 5px;
+    border-bottom: 1px solid #426C98;
+}
+
+.request-buttons{
+    text-align: right;
+    margin: 3px;
+}
+
+#edit-profile-image{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+#edit-cover-image{
+    width: 70%;
+    height: 100px;
+    margin-top: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+.post{
+    color: #242525;
+    background-color: #fbffff;
+}
+.post-author-name{
+    font-size: 14px;
+    color: #196baa;
+}
+
+.post-author{
+    margin-bottom: 10px;
+}
+.comment{
+    padding: 5px;
+    font-size: 14px;
+    margin: 5px;
+    background-color: #efecff;
+}
+.comment-author-img{
+    display: inline-block;
+    margin-bottom: 7px;
+    width: 27px;
+    height: 27px;
+}
+
+.likes-comments{
+    color: #666666;
+}
+
+.wall-post-to{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.date{
+    font-size: 12px;
+}
+.edit-post{
+    margin-bottom: 10px;
+}
+.add-comment-box{
+    margin: 10px;
+}
+#add-comment-area{
+    margin-bottom: 5px;
+}
+.mobile-only{
+    display: none;
+}
+.comment-author-box{
+    display: inline-block;
+}
+
+.auth{
+    display: inline-block;
+    width: 80%;
+}
+@media (max-width: 950px) {
+    #wrapper{
+        width: 90%;
+    }
+
+    .add-post{
+        width: 80%;
+    }
+    .posts-wrapper{
+        display: block;
+        float: none;
+        width: 100%;
+    }
+    .top-friends{
+        display: none;
+    }
+    .top-friends-mobile{
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid darkblue;
+        border-radius: 3px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    .top-friend-image{
+        width: 42px;
+        height: 42px;
+    }
+
+    .top-friend-bar{
+        display: inline-block;
+        vertical-align: middle;
+        width: 60px;
+        height: 80px;
+        font-size: 12px;
+    }
+    .friend-bar-all-name{
+        display: block;
+    }
+    .top-friend-bar{
+        display: inline-block;
+    }
+    .all-friends{
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 767px){
+    .mobile-only{
+        display: inline;
+    }
+}

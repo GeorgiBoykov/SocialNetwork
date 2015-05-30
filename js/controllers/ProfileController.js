@@ -13,6 +13,10 @@ app.controller('ProfileController', function (
             newProfileData['name'] = data.name;
         } else newProfileData.name = credentialsService.getName();
 
+        if (data.name.length > 50) {
+            return  notificationService.showErrorMessage('Name length too long (max: 50 characters)...');
+        }
+
         if (data.email) {
             newProfileData['email'] = data.email;
         } else newProfileData.email = credentialsService.getEmail();
@@ -20,6 +24,7 @@ app.controller('ProfileController', function (
         if (data.gender) {
             newProfileData['gender'] = data.gender;
         }
+
         if (data.profileImageData) {
             if (data.profileImageData.size > 131072) {
               return notificationService.showErrorMessage('Profile image size cannot be more than 128kb')

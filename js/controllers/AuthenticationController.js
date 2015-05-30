@@ -20,6 +20,9 @@ app.controller('AuthenticationController', function (
         if (!registerData.name) {
             return notificationService.showErrorMessage('Missing full name..');
         }
+        if (registerData.name.length > 50) {
+            return  notificationService.showErrorMessage('Name length too long (max: 50 characters)...');
+        }
         if (!registerData.email) {
             return notificationService.showErrorMessage('Missing email..');
         }

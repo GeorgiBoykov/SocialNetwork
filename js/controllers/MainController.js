@@ -6,8 +6,10 @@ app.controller('MainController', function (
         $location.path('/');
         return 0;
     }
+
     $scope.posts = {};
     var DEFAULT_POSTS_PER_PAGE = 5;
+
     //Sort posts
     $scope.objectKeys = function(obj){
         return Object.keys(obj);
@@ -134,7 +136,6 @@ app.controller('MainController', function (
     //--end
 
 
-
     //Event - Handlers
 
     $scope.addFriend = function (username) {
@@ -150,6 +151,9 @@ app.controller('MainController', function (
     $scope.addNewPost = function (content, username) {
         if (content.length < 2) {
             return  notificationService.showErrorMessage('Post length should be at least 2 characters long...');
+        }
+        if (content.length > 500) {
+            return  notificationService.showErrorMessage('Post length too long (max: 500 characters)...');
         }
         postService.addNewPost({postContent: content, username: username},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -196,6 +200,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
     $scope.getPostAllLikes = function (post, dialog) {
         $scope.showDialog('#post-likes-dialog-window');
         postService.getPostAllLikes(post.id, {Authorization: credentialsService.getSessionToken()},
@@ -217,6 +222,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
     $scope.unlikePost = function (post) {
         postService.unlikePost(post.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -243,6 +249,9 @@ app.controller('MainController', function (
         if (content.length < 2) {
             return  notificationService.showErrorMessage('Comment length should be at least 2 characters long...');
         }
+        if (content.length > 300) {
+            return  notificationService.showErrorMessage('Comment length too long (max: 500 characters)...');
+        }
         commentService.addNewComment(post.id, {commentContent: content},{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 post.comments.unshift(serverData);
@@ -263,6 +272,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
     $scope.openDeleteCommentDialog = function (post, comment, postKey, commentKey, dialog) {
         $scope.showDialog(dialog);
         $scope.commentToDelete = {post: post, comment: comment, postKey: postKey, commentKey:commentKey};
@@ -278,6 +288,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
     $scope.getCommentTopLikes = function (post, comment) {
         comment.showTopLikesBalloon = !comment.showTopLikesBalloon;
         commentService.getCommentTopLikes(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},
@@ -288,6 +299,7 @@ app.controller('MainController', function (
                 notificationService.showErrorMessage(JSON.stringify(serverError));
             });
     };
+
     $scope.getCommentAllLikes = function (post, comment, dialog) {
         $scope.showDialog(dialog);
         commentService.getCommentAllLikes(post.id, comment.id,{Authorization: credentialsService.getSessionToken()},

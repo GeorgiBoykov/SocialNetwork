@@ -14,6 +14,7 @@ app.controller('NavBarController', function (
              getFriendRequests();
          }
      }, 3000);
+
     function getFriendRequests() {
         profileService.getFriendRequests({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
@@ -54,6 +55,7 @@ app.controller('NavBarController', function (
             $scope.showSearches = false;
         }
     };
+
     $scope.clearSearchBox = function () {
         document.getElementById('searchBox').value = '';
         $scope.showSearches = false;
