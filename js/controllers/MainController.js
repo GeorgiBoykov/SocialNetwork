@@ -23,7 +23,7 @@ app.controller('MainController', function (
             if ($location.path() === '/news-feed') {
                 loadNewsFeedPage($scope.posts[lastElementKey].id,
                     DEFAULT_POSTS_PER_PAGE, lastElementKey);
-            } else if($location.path() === '/users/' + $routeParams.username + '/wall'){
+            } else if($location.path() === '/users/' + $routeParams.username){
                 loadWallPage($routeParams.username, $scope.posts[lastElementKey].id,
                     DEFAULT_POSTS_PER_PAGE, lastElementKey);
             }
@@ -63,7 +63,7 @@ app.controller('MainController', function (
     //--end
 
     // Load wall page
-    if ($location.path() === '/users/' + $routeParams.username + '/wall') {
+    if ($location.path() === '/users/' + $routeParams.username) {
         loadWallPage($routeParams.username);
         loadUserData($routeParams.username);
         if (credentialsService.getUsername() === $routeParams.username) {
@@ -283,7 +283,7 @@ app.controller('MainController', function (
         commentService.deleteComment(post.id,comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 delete $scope.posts[postKey].comments[commentKey];
-                document.getElementById(comment.id).style.display = 'none';
+                document.getElementById('comment'+comment.id).style.display = 'none';
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));

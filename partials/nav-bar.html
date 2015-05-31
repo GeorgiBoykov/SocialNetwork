@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav" ng-if="credentialsService.isLogged()">
                 <li>
-                    <a href="#/users/{{credentialsService.getUsername()}}/wall">
+                    <a href="#/users/{{credentialsService.getUsername()}}">
                         <img ng-src="{{credentialsService.getProfileImage() || 'img/anonymous.png'}}" width="27px" height="27px" alt="profileImage"/>
                         <span>{{credentialsService.getName()}}</span>
                     </a>
@@ -26,14 +26,14 @@
                     <div class="popup-list" ng-mouseleave="data.showRequests = false" ng-include="'partials/friend-requests.html'" ng-if="data.showRequests"></div>
                 </li>
                 <li>
-                    <a href="#/profile-settings">
+                    <a href="#/profile">
                     <img ng-src="img/settings.png" alt="settings"/>
                     <span class="mobile-only"> Settings</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#/change-password">
+                    <a href="#/profile/password">
                     <img ng-src="img/key.png" alt="password"/>
                     <span class="mobile-only"> Change Password</span>
                     </a>

@@ -5,16 +5,19 @@
         <div ng-include="'partials/post-dialog-window.html'"></div>
     </div>
     <div class="wall-post-to" ng-if="post.author.name != post.wallOwner.name">
-        <a href="#/users/{{post.author.username}}/wall">{{post.author.name}}</a>
+        <a href="#/users/{{post.author.username}}">{{post.author.name}}</a>
         >
-        <a href="#/users/{{post.wallOwner.username}}/wall">{{post.wallOwner.name}}</a>
+        <a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a>
     </div>
     <div class="post-author">
-        <a href="#/users/{{post.author.username}}/wall">
-            <img ng-src="{{post.author.profileImageData || 'img/anonymous.png'}}" class="post-author-img" alt=""/>
-            <p class="post-author-name">{{post.author.name}}</p>
-        </a>
-        <span class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
+        <div class="author-box" ng-mouseenter="post.showUserBalloon = true" ng-mouseleave="post.showUserBalloon = false" ng-click="post.showUserBalloon = !post.showUserBalloon">
+            <a href="#/users/{{post.author.username}}">
+                <img ng-src="{{post.author.profileImageData || 'img/anonymous.png'}}" class="post-author-img" alt=""/>
+                <p class="post-author-name">{{post.author.name}}</p>
+            </a>
+            <div ng-if="post.showUserBalloon" class="user-info-balloon" ng-include="'partials/post-user-info-balloon.html'"></div>
+        </div>
+        <p class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</p>
     </div>
     <p ng-if="!post.showEditPostInput">{{post.postContent}}</p>
     <div class="edit-post" ng-if="post.showEditPostInput">

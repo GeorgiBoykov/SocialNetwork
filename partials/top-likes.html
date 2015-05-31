@@ -1,6 +1,6 @@
 <div class="top-likers">
     <div class="liker" ng-repeat="like in postTopLikes.postLikes">
-        <a href="#/users/{{like.user.username}}/wall">
+        <a href="#/users/{{like.user.username}}">
             <img class="liker-photo" ng-src="{{like.user.profileImageData || 'img/anonymous.png'}}" alt=""/>
             <p>{{like.user.name}}</p>
         </a>

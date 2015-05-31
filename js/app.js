@@ -14,7 +14,7 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/news-feed.html',
             controller: 'MainController'
         })
-        .when('/users/:username/wall', {
+        .when('/users/:username', {
             templateUrl: 'partials/wall.html',
             controller: 'MainController'
         })
@@ -22,11 +22,11 @@ app.config(['$routeProvider', function (routeProvider) {
             templateUrl: 'partials/all-friends.html',
             controller: 'FriendsController'
         })
-        .when('/profile-settings', {
+        .when('/profile', {
             templateUrl: 'partials/profile-settings.html',
             controller: 'ProfileController'
         })
-        .when('/change-password', {
+        .when('/profile/password', {
             templateUrl: 'partials/change-password.html',
             controller: 'ProfileController'
         })

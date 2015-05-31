@@ -1,7 +1,7 @@
 <h4>Friends - <a href="#/users/{{username}}/friends">{{topFriends.totalCount}} total</a></h4>
 <p ng-if="friendsError">{{friendsError.message}}</p>
 <div class="top-friend-bar" ng-repeat="friend in topFriends.friends">
-    <a href="#/users/{{friend.username}}/wall">
+    <a href="#/users/{{friend.username}}">
         <img class="top-friend-image" ng-src="{{friend.profileImageData  || 'img/anonymous.png'}}" alt="image"/>
         <p>{{friend.name}}</p>
     </a>

@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="liker" ng-repeat="like in postAllLikes">
-                    <a href="#/users/{{like.user.username}}/wall" ng-click="hideDialog('#post-likes-dialog-window')">
+                    <a href="#/users/{{like.user.username}}" ng-click="hideDialog('#post-likes-dialog-window')">
                         <img class="liker-photo" ng-src="{{like.user.profileImageData || 'img/anonymous.png'}}" alt=""/>
                         <span>{{like.user.name}}</span>
                     </a>

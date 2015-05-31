@@ -1,6 +1,6 @@
 <p ng-if="friendRequests.length === 0">No new requests.</p>
 <div class="user" ng-repeat="request in friendRequests">
-    <a href="#/users/{{request.user.username}}/wall">
+    <a href="#/users/{{request.user.username}}">
         <img ng-src="{{request.user.profileImageData || 'img/anonymous.png'}}" width="64px" height="64px" alt=""/>
         <span>{{request.user.name}}</span>
     </a>

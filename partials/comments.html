@@ -1,15 +1,15 @@
-<div class="comment" ng-repeat="(commentKey, comment) in post.comments track by $index" id="{{comment.id}}">
+<div class="comment" ng-repeat="(commentKey, comment) in post.comments track by $index" id="{{'comment'+comment.id}}">
     <div class="post-control" ng-if="comment.author.username == credentialsService.getUsername()">
         <a href="" ng-click="comment.showEditCommentInput = !comment.showEditCommentInput">Edit</a>
         <a href="" ng-click="openDeleteCommentDialog(post, comment, postKey, commentKey,'#confirm-comment-delete')">Delete</a>
         <div ng-include="'partials/comment-dialog-window.html'"></div>
     </div>
-    <div class="comment-author-box" ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false" ng-click="comment.showUserBalloon = !comment.showUserBalloon">
+    <div class="author-box" ng-mouseenter="comment.showUserBalloon = true" ng-mouseleave="comment.showUserBalloon = false" ng-click="comment.showUserBalloon = !comment.showUserBalloon">
         <a href="">
             <img ng-src="{{comment.author.profileImageData || 'img/anonymous.png'}}" class="comment-author-img" alt=""/>
             <span>{{comment.author.name}}</span>
         </a>
-        <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/user-info-balloon.html'"></div>
+        <div ng-if="comment.showUserBalloon" class="user-info-balloon" ng-include="'partials/comment-user-info-balloon.html'"></div>
     </div>
     <span ng-if="!comment.showEditCommentInput">{{comment.commentContent}}</span>
     <div class="edit-post" ng-if="comment.showEditCommentInput">
@@ -29,7 +29,7 @@
             <div ng-if="comment.showTopLikesBalloon" class="toplikes-balloon">
                 <div class="top-likers">
                     <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
-                        <a href="#/users/{{like.user.username}}/wall">
+                        <a href="#/users/{{like.user.username}}">
                             <img class="liker-photo" ng-src="{{like.user.profileImageData  || 'img/anonymous.png'}}" alt=""/>
                             <p>{{like.user.name}}</p>
                         </a>
