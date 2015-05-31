@@ -1,5 +1,5 @@
 app.controller('NavBarController', function (
-    $scope, $rootScope, $location, userService, credentialsService, profileService, notificationService) {
+    $scope, $window, $rootScope, $location, userService, credentialsService, profileService, notificationService) {
 
     $scope.showRequests = false;
     $scope.showSearches = false;
@@ -19,6 +19,11 @@ app.controller('NavBarController', function (
         profileService.getFriendRequests({Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 $scope.friendRequests = serverData;
+                if (serverData.length > 0) {
+                    $window.document.title = 'Social Network ('+ serverData.length+')';
+                } else{
+                    $window.document.title = 'Social Network';
+                }
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));
@@ -66,6 +71,7 @@ app.controller('NavBarController', function (
             function(serverData) {
                 notificationService.showInfoMessage('Logout Successful.');
                 credentialsService.clearCredentials();
+                $window.document.title = 'Social Network';
                 $location.path('/');
             },
             function (serverError) {
