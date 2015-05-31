@@ -38,10 +38,14 @@
             ng-include="'partials/top-likes.html'"></div>
         </span>
         <a ng-if="!post.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername() || post.wallOwner.isFriend)"
-           href="" ng-click="likePost(post)">Like</a>
+           href="" ng-click="likePost(post)">
+            <img ng-src="img/like.png" alt=""/>
+            Like</a>
         <span ng-if="!post.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend"
            >Likes</span>
-        <a ng-if="post.liked" href="" ng-click="unlikePost(post)">Unlike</a>
+        <a ng-if="post.liked" href="" ng-click="unlikePost(post)">
+            <img ng-src="img/unlike.png" alt=""/>
+            Unlike</a>
 
         <span class="likes-comments">({{post.totalCommentsCount}})</span>
         <a href=""

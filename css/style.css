@@ -131,6 +131,10 @@ header{
     text-align: right;
     margin-top: 80px;
 }
+.total-results{
+    text-align: center;
+    font-style: italic;
+}
 #add-friend-btn{
     margin-right: 2%;
 }

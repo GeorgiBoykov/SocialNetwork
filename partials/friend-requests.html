@@ -9,3 +9,4 @@
         <button ng-click="respondFriendRequest(request.id, 'rejected')">Decline</button>
     </div>
 </div>
+<p class="total-results" ng-if="friendRequests.length !== 0">{{friendRequests.length}} requests total</p>

@@ -42,12 +42,16 @@
         </span>
 
         <a ng-if="!comment.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername() || post.wallOwner.isFriend)"
-           href="" ng-click="likeComment(post, comment, commentKey)">Like
+           href="" ng-click="likeComment(post, comment, commentKey)">
+            <img ng-src="img/like.png" alt=""/>
+            Like
         </a>
         <span ng-if="!comment.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend">
             Likes
         </span>
-        <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">Unlike</a>
+        <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">
+            <img ng-src="img/unlike.png" alt=""/>
+            Unlike</a>
         <span class="date">{{comment.date | date:"dd/MM/yyyy 'at' h:mma"}}</span>
     </div>
 </div>
