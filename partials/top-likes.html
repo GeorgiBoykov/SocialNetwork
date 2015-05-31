@@ -1,3 +1,4 @@
+<p ng-if="postTopLikes.totalLikeCount == 0">No Likes...</p>
 <div class="top-likers">
     <div class="liker" ng-repeat="like in postTopLikes.postLikes">
         <a href="#/users/{{like.user.username}}">
@@ -6,6 +7,5 @@
         </a>
     </div>
 </div>
-<p ng-if="postTopLikes.totalLikeCount == 0">No Likes...</p>
 <a ng-if="postTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"
    ng-click="getPostAllLikes(post, '#post-likes-dialog-window')">Show all</a>

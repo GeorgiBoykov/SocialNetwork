@@ -27,6 +27,7 @@
                 </a>
             </span>
             <div ng-if="comment.showTopLikesBalloon" class="toplikes-balloon">
+                <p ng-if="commentTopLikes.totalLikeCount == 0">No Likes...</p>
                 <div class="top-likers">
                     <div class="liker" ng-repeat="like in commentTopLikes.commentLikes">
                         <a href="#/users/{{like.user.username}}">
@@ -35,16 +36,15 @@
                         </a>
                     </div>
                 </div>
-                <p ng-if="commentTopLikes.totalLikeCount == 0">No Likes...</p>
                 <a ng-if="commentTopLikes.totalLikeCount != 0" class="btn btn-primary btn-xs all-likes-btn"
                    ng-click="getCommentAllLikes(post, comment, '#comment-likes-dialog-window')">Show all</a>
             </div>
         </span>
 
-        <a ng-if="!comment.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername())"
+        <a ng-if="!comment.liked && (post.author.isFriend || post.author.username == credentialsService.getUsername() || post.wallOwner.isFriend)"
            href="" ng-click="likeComment(post, comment, commentKey)">Like
         </a>
-        <span ng-if="!comment.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername()">
+        <span ng-if="!comment.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend">
             Likes
         </span>
         <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">Unlike</a>
