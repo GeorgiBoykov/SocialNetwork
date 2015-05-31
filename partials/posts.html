@@ -19,7 +19,7 @@
         </div>
         <p class="date">{{post.date | date:"dd/MM/yyyy 'at' h:mma"}}</p>
     </div>
-    <p ng-if="!post.showEditPostInput">{{post.postContent}}</p>
+    <p class="post-content" ng-if="!post.showEditPostInput">{{post.postContent}}</p>
     <div class="edit-post" ng-if="post.showEditPostInput">
         <textarea ng-model="newPostContent" class="form-control"
         ng-init="newPostContent=post.postContent">{{post.postContent}}</textarea>

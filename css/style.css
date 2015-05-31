@@ -78,7 +78,10 @@ header{
 .post-control{
     display: inline-block;
     float: right;
-    font-size: 14px;
+    font-size: 12px;
+}
+.post-content{
+    font-size: 16px;
 }
 #add-post-button{
     margin-top: 3%;
