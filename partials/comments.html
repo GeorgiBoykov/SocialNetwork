@@ -47,6 +47,7 @@
             Like
         </a>
         <span ng-if="!comment.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend">
+            <img ng-src="img/like.png" alt=""/>
             Likes
         </span>
         <a ng-if="comment.liked" href="" ng-click="unlikeComment(post, comment, commentKey)">

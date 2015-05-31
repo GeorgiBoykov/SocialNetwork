@@ -41,8 +41,9 @@
            href="" ng-click="likePost(post)">
             <img ng-src="img/like.png" alt=""/>
             Like</a>
-        <span ng-if="!post.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend"
-           >Likes</span>
+        <span ng-if="!post.liked && !post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend">
+            <img ng-src="img/like.png" alt=""/>
+            Likes</span>
         <a ng-if="post.liked" href="" ng-click="unlikePost(post)">
             <img ng-src="img/unlike.png" alt=""/>
             Unlike</a>
@@ -50,9 +51,12 @@
         <span class="likes-comments">({{post.totalCommentsCount}})</span>
         <a href=""
            ng-if="post.author.isFriend || post.author.username == credentialsService.getUsername() || post.wallOwner.isFriend"
-           ng-click="post.showCommentInput = !post.showCommentInput">Comment
+           ng-click="post.showCommentInput = !post.showCommentInput">
+            <img ng-src="img/comment.png" alt=""/>
+            Comment
         </a>
         <span ng-if="!post.author.isFriend && post.author.username != credentialsService.getUsername() && !post.wallOwner.isFriend">
+           <img ng-src="img/comment.png" alt=""/>
             Comments
         </span>
 
