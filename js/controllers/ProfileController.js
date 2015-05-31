@@ -13,7 +13,7 @@ app.controller('ProfileController', function (
             newProfileData['name'] = data.name;
         } else newProfileData.name = credentialsService.getName();
 
-        if (data.name.length > 50) {
+        if (data.name && data.name.length > 50) {
             return  notificationService.showErrorMessage('Name length too long (max: 50 characters)...');
         }
 

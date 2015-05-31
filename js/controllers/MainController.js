@@ -283,6 +283,7 @@ app.controller('MainController', function (
         commentService.deleteComment(post.id,comment.id,{Authorization: credentialsService.getSessionToken()},
             function(serverData) {
                 delete $scope.posts[postKey].comments[commentKey];
+                document.getElementById(comment.id).style.display = 'none';
             },
             function (serverError) {
                 notificationService.showErrorMessage(JSON.stringify(serverError));

@@ -1,4 +1,4 @@
-<div class="comment" ng-repeat="(commentKey, comment) in post.comments track by $index">
+<div class="comment" ng-repeat="(commentKey, comment) in post.comments track by $index" id="{{comment.id}}">
     <div class="post-control" ng-if="comment.author.username == credentialsService.getUsername()">
         <a href="" ng-click="comment.showEditCommentInput = !comment.showEditCommentInput">Edit</a>
         <a href="" ng-click="openDeleteCommentDialog(post, comment, postKey, commentKey,'#confirm-comment-delete')">Delete</a>
